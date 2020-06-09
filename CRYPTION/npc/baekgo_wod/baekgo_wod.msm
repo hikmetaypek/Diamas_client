@@ -1,0 +1,85 @@
+ScriptType            RaceDataScript
+
+BaseModelFileName     "d:/ymir work/npc/baekgo_wod/baekgo_wod.gr2"
+
+Group ShapeData
+{
+	PathName	"d:/ymir work/npc/baekgo_wod/"
+
+	ShapeDataCount			4
+
+	Group ShapeData00
+	{
+		ShapeIndex			0
+
+		Model				"baekgo_wod.gr2"
+		SourceSkin			"baekgo_body.dds"
+		TargetSkin			"baekgo_body.dds"
+	}
+	Group ShapeData01
+	{
+		ShapeIndex			0
+
+		Model				"baekgo_wod.gr2"
+		SourceSkin			"baekgo_book.dds"
+		TargetSkin			"baekgo_book.dds"
+	}
+	Group ShapeData02
+	{
+		ShapeIndex			0
+
+		Model				"baekgo_wod.gr2"
+		SourceSkin			"baekgo_face.dds"
+		TargetSkin			"baekgo_face.dds"
+	}
+	Group ShapeData03
+	{
+		ShapeIndex			0
+
+		Model				"baekgo_wod.gr2"
+		SourceSkin			"baekgo_legs.dds"
+		TargetSkin			"baekgo_legs.dds"
+	}
+}
+
+
+Group AttachingData
+{
+    AttachingDataCount       2
+    
+    Group AttachingData00
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        1
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           31.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+    
+    Group AttachingData01
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        3
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           50.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+}

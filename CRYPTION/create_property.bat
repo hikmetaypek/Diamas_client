@@ -1,0 +1,1 @@
+PropertyGenerator.exe property root\\PropertyList.json

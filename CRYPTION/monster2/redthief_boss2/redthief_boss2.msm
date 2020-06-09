@@ -1,0 +1,76 @@
+ScriptType            RaceDataScript
+
+BaseModelFileName     "D:\Ymir Work\monster2\redthief_boss2\redthief_boss2.GR2"
+
+Group ShapeData
+{
+	PathName	"d:/ymir work/monster2/redthief_boss2/"
+
+	ShapeDataCount			3
+
+	Group ShapeData00
+	{
+		ShapeIndex			0
+
+		Model				"redthief_boss2.gr2"
+		SourceSkin			"redthief_boss2_1.dds"
+		TargetSkin			"redthief_boss2_1.dds"
+	}
+	Group ShapeData00
+	{
+		ShapeIndex			1
+
+		Model				"redthief_boss2.gr2"
+		SourceSkin			"redthief_boss2_weapon.dds"
+		TargetSkin			"redthief_boss2_weapon.dds"
+	}
+	Group ShapeData00
+	{
+		ShapeIndex			2
+
+		Model				"redthief_boss2.gr2"
+		SourceSkin			"redthief_boss2_2.dds"
+		TargetSkin			"redthief_boss2_2.dds"
+	}
+}
+
+Group AttachingData
+{
+    AttachingDataCount       2
+    
+    Group AttachingData00
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        1
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           80.000000
+            Position         0.000000 0.000000 -20.000000
+        }
+    }
+    
+    Group AttachingData01
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        3
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           110.000000
+            Position         0.000000 0.000000 -20.000000
+        }
+    }
+}

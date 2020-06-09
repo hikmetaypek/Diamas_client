@@ -1,0 +1,61 @@
+ScriptType            RaceDataScript
+
+PartCount             1
+BaseModelFileName     "d:/ymir work/monster/orc_black/orc_black.gr2"
+
+Group ShapeData
+{
+	PathName	"d:/ymir work/monster/orc_black/"
+
+	ShapeDataCount			1
+
+	Group ShapeData00
+	{
+		ShapeIndex			0
+
+		Model				"orc_black.gr2"
+		SourceSkin			"orc_black.dds"
+		TargetSkin			"orc_black.dds"
+	}
+}
+
+Group AttachingData
+{
+    AttachingDataCount       2
+    
+    Group AttachingData00
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        1
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           52.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+    
+    Group AttachingData01
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        3
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           48.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+}

@@ -1,0 +1,73 @@
+ScriptType            RaceDataScript
+
+BaseModelFileName     "D:\Ymir Work\monster\sugu_general\sugu_general.GR2"
+
+DefaultHitSoundFileName     ""
+List DefaultHitEffectFileName
+{
+}
+
+Group ShapeData
+{
+	PathName	"d:/ymir work/monster/sugu_general/"
+
+	ShapeDataCount			2
+
+	Group ShapeData00
+	{
+		ShapeIndex			0
+
+		Model				"sugu_general.gr2"
+		SourceSkin			"sugu.dds"
+		TargetSkin			"sugu.dds"
+	}
+	Group ShapeData01
+	{
+		ShapeIndex			0
+
+		Model				"sugu_general.gr2"
+		SourceSkin			"sugu_crown.dds"
+		TargetSkin			"sugu_crown.dds"
+	}
+}
+
+Group AttachingData
+{
+    AttachingDataCount       2
+    
+    Group AttachingData00
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        1
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           100.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+    
+    Group AttachingData01
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        3
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           130.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+}
