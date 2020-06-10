@@ -41,9 +41,6 @@ import uiChestDrop
 import event
 import localeInfo
 
-import admin
-import uiAdminManager
-
 IsQBHide = 0
 class Interface(object):
 	CHARACTER_STATUS_TAB = 1
@@ -73,7 +70,6 @@ class Interface(object):
 		self.wndMiniMap = None
 		self.wndGuild = None
 		self.wndGuildBuilding = None
-		self.wndAdminManager = None
 		self.dlgChestDrop = None
 
 		self.listGMName = {}
@@ -452,9 +448,6 @@ class Interface(object):
 		for dlg in self.equipmentDialogDict.itervalues():
 			dlg.Destroy()
 
-		if self.wndAdminManager:
-			self.wndAdminManager.Destroy()
-
 		# ITEM_MALL
 		del self.mallPageDlg
 		# END_OF_ITEM_MALL
@@ -496,7 +489,6 @@ class Interface(object):
 		del self.tipBoard
 		del self.bigBoard
 		del self.wndItemSelect
-		del self.wndAdminManager
 		if self.dlgChestDrop:
 			del self.dlgChestDrop
 
@@ -1157,73 +1149,6 @@ class Interface(object):
 		self.wndItemSelect.Open()
 	# END_OF_ACCESSORY_REFINE_ADD_METIN_STONE
 
-	def AdminManager_Init(self):
-		self.wndTaskBar.SetToggleButtonEvent(uiTaskBar.TaskBar.BUTTON_ADMIN_MANAGER, ui.__mem_func__(self.ToggleAdminManagerWindow))
-		self.wndTaskBar.ShowToggleButton(uiTaskBar.TaskBar.BUTTON_ADMIN_MANAGER)
-
-	def AdminManager_PlayerOnline(self, pid):
-		if self.wndAdminManager:
-			self.wndAdminManager.OnPlayerOnline(pid)
-
-	def AdminManager_PlayerOffline(self, pid):
-		if self.wndAdminManager:
-			self.wndAdminManager.OnPlayerOffline(pid)
-
-	def AdminManager_RefreshMapViewer(self):
-		if self.wndAdminManager:
-			self.wndAdminManager.MAPVIEWER_RefreshPage()
-
-	def AdminManager_StartObserver(self):
-		if self.wndAdminManager:
-			self.wndAdminManager.OBSERVER_OnStart()
-
-	def AdminManager_Refresh(self):
-		if self.wndAdminManager:
-			self.wndAdminManager.OBSERVER_RefreshPage()
-			chat.AppendChat(chat.CHAT_TYPE_INFO, localeInfo.ADMIN_MANAGER_OBSERVER_RESTARTED % self.wndAdminManager.OBSERVER_GetName())
-
-	def AdminManager_RefreshSkill(self):
-		if self.wndAdminManager:
-			self.wndAdminManager.OBSERVER_RefreshSkill()
-
-	def AdminManager_PointChange(self):
-		if self.wndAdminManager:
-			self.wndAdminManager.OBSERVER_OnPointChange()
-
-	def AdminManager_RefreshInventory(self, pageIndex):
-		if self.wndAdminManager:
-			self.wndAdminManager.OBSERVER_RefreshInventory(pageIndex)
-
-	def AdminManager_RefreshEquipment(self):
-		if self.wndAdminManager:
-			self.wndAdminManager.OBSERVER_RefreshEquipment()
-
-	def AdminManager_RefreshWhisper(self, pid):
-		if self.wndAdminManager:
-			self.wndAdminManager.OBSERVER_OnWhisperUpdate(pid)
-
-	def AdminManager_OnUpdate(self):
-		if self.wndAdminManager and not self.wndAdminManager.IsShow():
-			self.wndAdminManager.OnUpdate()
-
-	def ToggleAdminManagerWindow(self):
-		if self.wndAdminManager and self.wndAdminManager.IsShow():
-			self.CloseAdminManagerWindow()
-		else:
-			self.OpenAdminManagerWindow()
-
-	def OpenAdminManagerWindow(self):
-		if not admin.CanOpenWindow():
-			return
-
-		if not self.wndAdminManager:
-			self.wndAdminManager = uiAdminManager.AdminManagerWindow()
-		self.wndAdminManager.Open()
-
-	def CloseAdminManagerWindow(self):
-		if self.wndAdminManager:
-			self.wndAdminManager.Close()
-			
 	#####################################################################################
 	### Private Shop ###
 

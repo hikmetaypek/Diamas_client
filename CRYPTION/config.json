@@ -1,7 +1,7 @@
 [
 	{
 		"dir": "root",
-		"file": "../pack/root.rh2",
+		"file": "../data/root.dia",
 		"visualdir": "",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -19,30 +19,8 @@
 		}
 	},
 	{
-		"dir": "patch1",
-		"file": "../pack/patch1.rh2",
-		"visualdir": "",
-		"key": [
-			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-			0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4
-		],
-		"type": ["archive_flag_lz4", "archive_flag_aes256"],
-		"version": 5
-	},
-	{
-		"dir": "patch2",
-		"file": "../pack/patch2.rh2",
-		"visualdir": "d:/ymir work/",
-		"key": [
-			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
-			0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4
-		],
-		"type": ["archive_flag_lz4", "archive_flag_aes256"],
-		"version": 5
-	},
-	{
 		"dir": "bgm",
-		"file": "../pack/bgm.rh2",
+		"file": "../data/bgm.dia",
 		"visualdir": "bgm/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -53,7 +31,7 @@
 	},
 	{
 		"dir": "effect",
-		"file": "../pack/effect.rh2",
+		"file": "../data/effect.dia",
 		"visualdir": "d:/ymir work/effect/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -64,7 +42,7 @@
 	},
 	{
 		"dir": "etc",
-		"file": "../pack/etc.rh2",
+		"file": "../data/etc.dia",
 		"visualdir": "d:/ymir work/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -75,7 +53,7 @@
 	},
 	{
 		"dir": "guild",
-		"file": "../pack/guild.rh2",
+		"file": "../data/guild.dia",
 		"visualdir": "d:/ymir work/guild/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -86,7 +64,7 @@
 	},
 	{
 		"dir": "icon",
-		"file": "../pack/icon.rh2",
+		"file": "../data/icon.dia",
 		"visualdir": "icon/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -97,7 +75,7 @@
 	},
 	{
 		"dir": "item",
-		"file": "../pack/item.rh2",
+		"file": "../data/item.dia",
 		"visualdir": "d:/ymir work/item/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -108,7 +86,7 @@
 	},
 	{
 		"dir": "locale",
-		"file": "../pack/locale.rh2",
+		"file": "../data/locale.dia",
 		"visualdir": "locale/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -119,7 +97,7 @@
 	},
 	{
 		"dir": "maps",
-		"file": "../pack/maps.rh2",
+		"file": "../data/maps.dia",
 		"visualdir": "",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -130,7 +108,7 @@
 	},
 	{
 		"dir": "monster",
-		"file": "../pack/monster.rh2",
+		"file": "../data/monster.dia",
 		"visualdir": "d:/ymir work/monster/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -141,7 +119,7 @@
 	},
 	{
 		"dir": "monster2",
-		"file": "../pack/monster2.rh2",
+		"file": "../data/monster2.dia",
 		"visualdir": "d:/ymir work/monster2/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -152,7 +130,7 @@
 	},
 	{
 		"dir": "npc",
-		"file": "../pack/npc.rh2",
+		"file": "../data/npc.dia",
 		"visualdir": "d:/ymir work/npc/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -163,7 +141,7 @@
 	},
 	{
 		"dir": "npc2",
-		"file": "../pack/npc2.rh2",
+		"file": "../data/npc2.dia",
 		"visualdir": "d:/ymir work/npc2/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -174,7 +152,7 @@
 	},
 	{
 		"dir": "npc_mount",
-		"file": "../pack/npc_mount.rh2",
+		"file": "../data/npc_mount.dia",
 		"visualdir": "d:/ymir work/npc_mount/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -185,7 +163,7 @@
 	},
 	{
 		"dir": "npc_pet",
-		"file": "../pack/npc_pet.rh2",
+		"file": "../data/npc_pet.dia",
 		"visualdir": "d:/ymir work/npc_pet/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -195,8 +173,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc_common",
-		"file": "../pack/pc_common.rh2",
+		"dir": "pc/common",
+		"file": "../data/pc_common.dia",
 		"visualdir": "d:/ymir work/pc/common/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -206,8 +184,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc_assassin",
-		"file": "../pack/pc_assassin.rh2",
+		"dir": "pc/assassin",
+		"file": "../data/pc_assassin.dia",
 		"visualdir": "d:/ymir work/pc/assassin/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -217,8 +195,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc_sura",
-		"file": "../pack/pc_sura.rh2",
+		"dir": "pc/sura",
+		"file": "../data/pc_sura.dia",
 		"visualdir": "d:/ymir work/pc/sura/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -228,8 +206,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc_shaman",
-		"file": "../pack/pc_shaman.rh2",
+		"dir": "pc/shaman",
+		"file": "../data/pc_shaman.dia",
 		"visualdir": "d:/ymir work/pc/shaman/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -239,8 +217,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc_warrior",
-		"file": "../pack/pc_warrior.rh2",
+		"dir": "pc/warrior",
+		"file": "../data/pc_warrior.dia",
 		"visualdir": "d:/ymir work/pc/warrior/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -250,8 +228,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2_assassin",
-		"file": "../pack/pc2_assassin.rh2",
+		"dir": "pc2/assassin",
+		"file": "../data/pc2_assassin.dia",
 		"visualdir": "d:/ymir work/pc2/assassin/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -261,8 +239,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2_common",
-		"file": "../pack/pc2_common.rh2",
+		"dir": "pc2/common",
+		"file": "../data/pc2_common.dia",
 		"visualdir": "d:/ymir work/pc2/common/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -272,8 +250,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2_sura",
-		"file": "../pack/pc2_sura.rh2",
+		"dir": "pc2/sura",
+		"file": "../data/pc2_sura.dia",
 		"visualdir": "d:/ymir work/pc2/sura/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -283,8 +261,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2_shaman",
-		"file": "../pack/pc2_shaman.rh2",
+		"dir": "pc2/shaman",
+		"file": "../data/pc2_shaman.dia",
 		"visualdir": "d:/ymir work/pc2/shaman/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -294,8 +272,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2_warrior",
-		"file": "../pack/pc2_warrior.rh2",
+		"dir": "pc2/warrior",
+		"file": "../data/pc2_warrior.dia",
 		"visualdir": "d:/ymir work/pc2/warrior/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -305,8 +283,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc3_common",
-		"file": "../pack/pc3_common.rh2",
+		"dir": "pc3/common",
+		"file": "../data/pc3_common.dia",
 		"visualdir": "d:/ymir work/pc3/common/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -316,8 +294,8 @@
 		"version": 5
 	},
 	{
-		"dir": "pc3_wolfman",
-		"file": "../pack/pc3_wolfman.rh2",
+		"dir": "pc3/wolfman",
+		"file": "../data/pc3_wolfman.dia",
 		"visualdir": "d:/ymir work/pc3/wolfman/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -328,7 +306,7 @@
 	},
 	{
 		"dir": "property",
-		"file": "../pack/property.rh2",
+		"file": "../data/property.dia",
 		"visualdir": "property/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -339,7 +317,7 @@
 	},
 	{
 		"dir": "uiloading",
-		"file": "../pack/uiloading.rh2",
+		"file": "../data/uiloading.dia",
 		"visualdir": "d:/ymir work/uiloading/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -349,8 +327,8 @@
 		"version": 5
 	},
 	{
-		"dir": "season1",
-		"file": "../pack/season1.rh2",
+		"dir": "season_1",
+		"file": "../data/season_1.dia",
 		"visualdir": "season1/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -360,8 +338,8 @@
 		"version": 5
 	},
 	{
-		"dir": "season2",
-		"file": "../pack/season2.rh2",
+		"dir": "season_2",
+		"file": "../data/season_2.dia",
 		"visualdir": "season2/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -372,7 +350,7 @@
 	},
 	{
 		"dir": "sound",
-		"file": "../pack/sound.rh2",
+		"file": "../data/sound.dia",
 		"visualdir": "sound/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -383,7 +361,7 @@
 	},
 	{
 		"dir": "terrain",
-		"file": "../pack/terrain.rh2",
+		"file": "../data/terrain.dia",
 		"visualdir": "d:/ymir work/terrainmaps/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -394,7 +372,7 @@
 	},
 	{
 		"dir": "textureset",
-		"file": "../pack/textureset.rh2",
+		"file": "../data/textureset.dia",
 		"visualdir": "textureset/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -405,7 +383,7 @@
 	},
 	{
 		"dir": "tree",
-		"file": "../pack/tree.rh2",
+		"file": "../data/tree.dia",
 		"visualdir": "d:/ymir work/tree/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -416,7 +394,7 @@
 	},
 	{
 		"dir": "zone",
-		"file": "../pack/zone.rh2",
+		"file": "../data/zone.dia",
 		"visualdir": "d:/ymir work/zone/",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,

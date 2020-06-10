@@ -26,11 +26,11 @@ def GetMouseButtonSettings():
 
 def SaveMouseButtonSettings():
 	global MOUSE_SETTINGS
-	open("mouse.cfg", "w").write("%s\t%s" % tuple(MOUSE_SETTINGS))
+	open("config/mouse.cfg", "w").write("%s\t%s" % tuple(MOUSE_SETTINGS))
 
 def LoadMouseButtonSettings():
 	global MOUSE_SETTINGS
-	tokens = open("mouse.cfg", "r").read().split()
+	tokens = open("congfig/mouse.cfg", "r").read().split()
 
 	if len(tokens) != 2:
 		raise RuntimeError, "MOUSE_SETTINGS_FILE_ERROR"
@@ -434,7 +434,7 @@ class TaskBar(ui.ScriptWindow):
 			slot.SetOverOutItemEvent(ui.__mem_func__(self.OverOutItem))
 
 		toggleButtonDict = {}
-		toggleButtonDict[TaskBar.BUTTON_ADMIN_MANAGER]=self.GetChild("AdminManagerButton")
+#		toggleButtonDict[TaskBar.BUTTON_ADMIN_MANAGER]=self.GetChild("AdminManagerButton")
 		toggleButtonDict[TaskBar.BUTTON_CHARACTER]=self.GetChild("CharacterButton")
 		toggleButtonDict[TaskBar.BUTTON_INVENTORY]=self.GetChild("InventoryButton")
 		toggleButtonDict[TaskBar.BUTTON_MESSENGER]=self.GetChild("MessengerButton")
@@ -447,7 +447,7 @@ class TaskBar(ui.ScriptWindow):
 			toggleButtonDict[TaskBar.BUTTON_EXPAND]=self.GetChild("ExpandButton")
 			TaskBar.IS_EXPANDED = True
 
-		toggleButtonDict[TaskBar.BUTTON_ADMIN_MANAGER].Hide()
+#		toggleButtonDict[TaskBar.BUTTON_ADMIN_MANAGER].Hide()
 		
 		expGauge = []
 		expGauge.append(self.GetChild("EXPGauge_01"))

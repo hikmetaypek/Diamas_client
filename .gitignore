@@ -8,10 +8,12 @@
 /metin2.cfg
 /mouse.cfg
 /channel.inf
-/pack/*
+/data/*
+!/data/.gitkeep
 /temp/*
 /screenshot/*
 /CRYPTION/Thumbs.db
+/CRYPTION/logs/*
 /CRYPTION/tools/Python27/Lib/*.pyc
 /CRYPTION/tools/Python27/Lib/*/*.pyc
 /CRYPTION/source/root/property.xml
@@ -30,3 +32,4 @@
 /*.lib
 /*.pdb
 syserr.txt
+/logs/*

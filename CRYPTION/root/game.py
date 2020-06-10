@@ -337,7 +337,6 @@ class GameWindow(ui.ScriptWindow):
 		onPressKeyDict[app.DIK_H]			= lambda : self.__PressHKey()
 		onPressKeyDict[app.DIK_B]			= lambda : self.__PressBKey()
 		onPressKeyDict[app.DIK_F]			= lambda : self.__PressFKey()
-		onPressKeyDict[app.DIK_X]			= lambda : self.interface.ToggleAdminManagerWindow()
 
 		self.onPressKeyDict = onPressKeyDict
 
@@ -1401,7 +1400,6 @@ class GameWindow(ui.ScriptWindow):
 			self.__XMasBoom_Update()
 
 		self.interface.BUILD_OnUpdate()
-		self.interface.AdminManager_OnUpdate()
 
 	def UpdateDebugInfo(self):
 		#
@@ -2132,39 +2130,4 @@ class GameWindow(ui.ScriptWindow):
 			snd.FadeInMusic("BGM/" + musicInfo.fieldMusic)
 
 	# END_OF_WEDDING
-
-	def BINARY_AdminInit(self):
-		self.interface.AdminManager_Init()
-
-	def BINARY_AdminPlayerOnline(self, pid):
-		self.interface.AdminManager_PlayerOnline(pid)
-
-	def BINARY_AdminPlayerOffline(self, pid):
-		self.interface.AdminManager_PlayerOffline(pid)
-
-	def BINARY_AdminMapViewerStart(self):
-		self.interface.AdminManager_RefreshMapViewer()
-
-	def BINARY_AdminObserverStart(self):
-		self.interface.AdminManager_StartObserver()
-
-	def BINARY_AdminObserverRefresh(self):
-		self.interface.AdminManager_Refresh()
-
-	def BINARY_AdminObserverRefreshSkill(self):
-		self.interface.AdminManager_RefreshSkill()
-
-	def BINARY_AdminObserverPointChange(self):
-		self.interface.AdminManager_PointChange()
-
-	def BINARY_AdminObserverRefreshInventory(self, pageIndex):
-		self.interface.AdminManager_RefreshInventory(pageIndex)
-
-	def BINARY_AdminObserverRefreshEquipment(self):
-		self.interface.AdminManager_RefreshEquipment()
-
-	def BINARY_AdminObserverRefreshWhisper(self, pid):
-		self.interface.AdminManager_RefreshWhisper(pid)
-		
-
 

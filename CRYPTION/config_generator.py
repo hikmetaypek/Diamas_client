@@ -3,7 +3,7 @@
 [
 	{
 		"dir": "root",
-		"file": "../pack/root.rh2",
+		"file": "../data/root.dia",
 		"visualdir": "",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
@@ -56,15 +56,10 @@ template = """\
 
 formattedData = ""
 for k, v in archives.items():
-	# print("{}: {}".format(k, v))
-
 	templateCopy = template
-	templateCopy = templateCopy.replace("PACK_NAME_HERE", k.split("../pack/")[1])
-	templateCopy = templateCopy.replace("PACK_DIR_HERE", k + ".rh2")
+	templateCopy = templateCopy.replace("PACK_NAME_HERE", k.split("../data/")[1])
+	templateCopy = templateCopy.replace("PACK_DIR_HERE", k + ".dia")
 	templateCopy = templateCopy.replace("PACK_VDIR_HERE", v)
-
-	#print(templateCopy)
-	#break
 
 	formattedData += templateCopy
 

@@ -1,7 +1,7 @@
 import os
 
-target = "../pack/"
-output = "../pack/Index"
+target = "../data/"
+output = "../data/Index"
 
 # Touch
 with open(output, "a"):
@@ -10,5 +10,5 @@ with open(output, "a"):
 # Write new content
 with open(output, "w") as out:
 	for f in os.listdir(target):
-		if (os.path.isfile(os.path.join(target, f)) and f != "Index" and os.path.splitext(f)[1] == ".rh2"):
+		if (os.path.isfile(os.path.join(target, f)) and f != "Index" and os.path.splitext(f)[1] == ".dia"):
 			out.write("%s\n" % f)
