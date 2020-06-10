@@ -222,13 +222,12 @@ class ExpandedTaskBar(ui.ScriptWindow):
 
 class TaskBar(ui.ScriptWindow):
 
-	BUTTON_ADMIN_MANAGER = 0
-	BUTTON_CHARACTER = 1
-	BUTTON_INVENTORY = 2
-	BUTTON_MESSENGER = 3
-	BUTTON_SYSTEM = 4
-	BUTTON_CHAT = 5
-	BUTTON_EXPAND = 5
+	BUTTON_CHARACTER = 0
+	BUTTON_INVENTORY = 1
+	BUTTON_MESSENGER = 2
+	BUTTON_SYSTEM = 3
+	BUTTON_CHAT = 4
+	BUTTON_EXPAND = 4
 	IS_EXPANDED = False
 
 	MOUSE_BUTTON_LEFT = 0
@@ -447,8 +446,6 @@ class TaskBar(ui.ScriptWindow):
 			toggleButtonDict[TaskBar.BUTTON_EXPAND]=self.GetChild("ExpandButton")
 			TaskBar.IS_EXPANDED = True
 
-#		toggleButtonDict[TaskBar.BUTTON_ADMIN_MANAGER].Hide()
-		
 		expGauge = []
 		expGauge.append(self.GetChild("EXPGauge_01"))
 		expGauge.append(self.GetChild("EXPGauge_02"))
@@ -622,9 +619,6 @@ class TaskBar(ui.ScriptWindow):
 
 	def SetToggleButtonEvent(self, eButton, kEventFunc):
 		self.toggleButtonDict[eButton].SetEvent(kEventFunc)
-		
-	def ShowToggleButton(self, eButton):
-		self.toggleButtonDict[eButton].Show()
 
 	def SetItemToolTip(self, tooltipItem):
 		self.tooltipItem = tooltipItem

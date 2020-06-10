@@ -97,6 +97,8 @@ class Window(object):
 		self.mouseLeftButtonDownEvent = None
 		self.onMouseLeftButtonUpEvent = None
 		self.mouseLeftButtonDoubleClickEvent = None
+		if app.ENABLE_MOUSEWHEEL_EVENT:
+			self.onMouseWheelScrollEvent=None
 		self.RegisterWindow(layer)
 		self.Hide()
 
@@ -258,6 +260,17 @@ class Window(object):
 	def OnMouseLeftButtonDoubleClick(self):
 		if self.mouseLeftButtonDoubleClickEvent:
 			self.mouseLeftButtonDoubleClickEvent()
+
+	if app.ENABLE_MOUSEWHEEL_EVENT:
+		def SetMouseWheelScrollEvent(self, event):
+			self.onMouseWheelScrollEvent = event
+			wndMgr.SetScrollable(self.hWnd)
+		
+		
+		def OnMouseWheelScroll(self, mode = "UP"): #mode could be value "UP" and "DOWN"
+			print("OnMouseWheelScroll")
+			if self.onMouseWheelScrollEvent:
+				self.onMouseWheelScrollEvent(mode)
 
 class ListBoxEx(Window):
 
@@ -1773,11 +1786,24 @@ class SlotWindow(Window):
 	def HideRequirementSign(self, slotNumber):
 		wndMgr.HideRequirementSign(self.hWnd, slotNumber)
 
-	def ActivateSlot(self, slotNumber):
-		wndMgr.ActivateSlot(self.hWnd, slotNumber)
+	if app.ENABLE_ACCE_SYSTEM:
+		def ActivateSlot(self, slotNumber, r = 1.0, g = 1.0, b = 1.0, a = 1.0):
+			wndMgr.ActivateEffect(self.hWnd, slotNumber, r, g, b, a)
 
-	def DeactivateSlot(self, slotNumber):
-		wndMgr.DeactivateSlot(self.hWnd, slotNumber)
+		def DeactivateSlot(self, slotNumber):
+			wndMgr.DeactivateEffect(self.hWnd, slotNumber)
+
+		def ActivateSlotOld(self, slotNumber):
+			wndMgr.ActivateSlot(self.hWnd, slotNumber)
+
+		def DeactivateSlotOld(self, slotNumber):
+			wndMgr.DeactivateSlot(self.hWnd, slotNumber)
+	else:
+		def ActivateSlot(self, slotNumber):
+			wndMgr.ActivateSlot(self.hWnd, slotNumber)
+
+		def DeactivateSlot(self, slotNumber):
+			wndMgr.DeactivateSlot(self.hWnd, slotNumber)
 
 	def ShowSlotBaseImage(self, slotNumber):
 		wndMgr.ShowSlotBaseImage(self.hWnd, slotNumber)
@@ -2614,6 +2640,22 @@ class ScrollBar(Window):
 		self.SCROLLBAR_BUTTON_WIDTH = self.upButton.GetWidth()
 		self.SCROLLBAR_BUTTON_HEIGHT = self.upButton.GetHeight()
 
+		if app.ENABLE_MOUSEWHEEL_EVENT:
+			self.upButton.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+			self.downButton.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+			self.middleBar.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+			self.barSlot.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+			self.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+
+
+	if app.ENABLE_MOUSEWHEEL_EVENT:
+		def OnMouseWheelScroll_ScrollBar(self,mode):
+			eventDct = { "UP" : lambda : self.SetPos(self.curPos - (self.scrollStep/4)) , "DOWN" : lambda: self.SetPos(self.curPos + (self.scrollStep/4)) }
+			
+			if mode in eventDct:
+				eventDct[mode]()
+			
+
 	def Destroy(self):
 		self.middleBar = None
 		self.upButton = None
@@ -2773,6 +2815,12 @@ class SmallThinScrollBar(ScrollBar):
 		self.MIDDLE_BAR_UPPER_PLACE = 0
 		self.MIDDLE_BAR_DOWNER_PLACE = 0
 		self.TEMP_SPACE = 0
+		
+		if app.ENABLE_MOUSEWHEEL_EVENT:
+			self.middleBar.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+			self.upButton.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+			self.downButton.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
+			self.SetMouseWheelScrollEvent(self.OnMouseWheelScroll_ScrollBar)
 
 	def UpdateBarSlot(self):
 		pass

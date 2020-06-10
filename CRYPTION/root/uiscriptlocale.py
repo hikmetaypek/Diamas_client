@@ -4,8 +4,6 @@ OPTION_SHADOW = "SHADOW"
 
 CODEPAGE = str(app.GetDefaultCodePage())
 
-#CUBE_TITLE = "Cube Window"
-
 def LoadLocaleFile(srcFileName, localeDict):
 	localeDict["CUBE_INFO_TITLE"] = "Recipe"
 	localeDict["CUBE_REQUIRE_MATERIAL"] = "Requirements"
@@ -43,4 +41,7 @@ EMPIREDESC_C = "%s/empiredesc_c.txt" % (name)
 LOCALE_INTERFACE_FILE_NAME = "%s/locale_interface.txt" % (name)
 
 LoadLocaleFile(LOCALE_INTERFACE_FILE_NAME, locals())
+if app.ENABLE_ACCE_SYSTEM:
+	LoadLocaleFile("acce/acce_interface.txt", locals())
+
 

@@ -229,9 +229,13 @@ class SelectCharacterWindow(ui.Window):
 			form=net.GetAccountCharacterSlotDataInteger(index, net.ACCOUNT_CHARACTER_SLOT_FORM)
 			name=net.GetAccountCharacterSlotDataString(index, net.ACCOUNT_CHARACTER_SLOT_NAME)
 			hair=net.GetAccountCharacterSlotDataInteger(index, net.ACCOUNT_CHARACTER_SLOT_HAIR)
-
+			if app.ENABLE_ACCE_SYSTEM:
+				acce = net.GetAccountCharacterSlotDataInteger(index, net.ACCOUNT_CHARACTER_SLOT_ACCE)
 			if id:
-				self.MakeCharacter(index, id, name, race, form, hair)
+				if app.ENABLE_ACCE_SYSTEM:
+					self.MakeCharacter(index, id, name, race, form, hair, acce)
+				else:
+					self.MakeCharacter(index, id, name, race, form, hair)
 				self.SelectSlot(index)
 
 		self.SelectSlot(self.slot)
@@ -341,7 +345,7 @@ class SelectCharacterWindow(ui.Window):
 
 		return 1
 
-	def MakeCharacter(self, index, id, name, race, form, hair):
+	def MakeCharacter(self, index, id, name, race, form, hair, acce =0):
 		if 0 == id:
 			return
 
@@ -353,6 +357,9 @@ class SelectCharacterWindow(ui.Window):
 		chr.SetRace(race)
 		chr.SetArmor(form)
 		chr.SetHair(hair)
+		
+		if app.ENABLE_ACCE_SYSTEM:
+			chr.SetAcce(acce)
 
 		chr.Refresh()
 		chr.SetMotionMode(chr.MOTION_MODE_GENERAL)

@@ -158,7 +158,8 @@ class LoginWindow(ui.ScriptWindow):
 			dbg.TraceError("LoginWindow.Open - __LoadScript Error")
 			return
 
-#		self.__LoadLoginInfo("loginInfo.xml")
+		self.__LoadLoginInfo("loginInfo.xml")
+
 		if app.loggined:
 			self.loginFailureFuncDict = {
 				"WRONGPWD"	: app.Exit,
@@ -249,14 +250,14 @@ class LoginWindow(ui.ScriptWindow):
 
 	def __SaveChannelInfo(self):
 		try:
-			file=open("channel.inf", "w")
+			file=open("config/channel.cfg", "w")
 			file.write("%d %d %d" % (self.__GetServerID(), self.__GetChannelID(), self.__GetRegionID()))
 		except:
 			print "LoginWindow.__SaveChannelInfo - SaveError"
 
 	def __LoadChannelInfo(self):
 		try:
-			file=open("channel.inf")
+			file=open("config/channel.cfg")
 			lines=file.readlines()
 
 			if len(lines)>0:
@@ -282,8 +283,17 @@ class LoginWindow(ui.ScriptWindow):
 			self.idEditLine.SetFocus()
 
 	def SetPasswordEditLineFocus(self):
-		if self.pwdEditLine:
-			self.pwdEditLine.SetFocus()
+		if constInfo.ENABLE_CLEAN_DATA_IF_FAIL_LOGIN:
+			if self.idEditLine:
+				self.idEditLine.SetText("")
+				self.idEditLine.SetFocus()
+
+			if self.pwdEditLine != None:
+				self.pwdEditLine.SetText("")
+		else:
+			if self.pwdEditLine:
+				self.pwdEditLine.SetFocus()
+
 
 	def OnEndCountDown(self):
 		self.isNowCountDown = False
@@ -498,6 +508,86 @@ class LoginWindow(ui.ScriptWindow):
 		net.SetServerInfo(name.strip())
 		self.serverInfo.SetText(name)
 
+	def __LoadLoginInfo(self, loginInfoFileName):
+		def getValue(element, name, default):
+			if [] != element.getElementsByTagName(name):
+				return element.getElementsByTagName(name).item(0).firstChild.nodeValue
+			else:
+				return default
+
+		self.id = None
+		self.pwd = None
+		self.loginnedServer = None
+		self.loginnedChannel = None
+		app.loggined = False
+
+		self.loginInfo = True
+
+		from xml.dom.minidom import parse
+		try:
+			f = open(loginInfoFileName, "r")
+			dom = parse(f)
+		except:
+			return
+		serverLst = dom.getElementsByTagName("server")
+		if [] != dom.getElementsByTagName("logininfo"):
+			logininfo = dom.getElementsByTagName("logininfo")[0]
+		else:
+			return
+
+		try:
+			server_name = logininfo.getAttribute("name")
+			channel_idx = int(logininfo.getAttribute("channel_idx"))
+		except:
+			return
+
+		try:
+			matched = False
+
+			for k, v in serverInfo.REGION_DICT[0].iteritems():
+				if v["name"] == server_name:
+					account_addr = serverInfo.REGION_AUTH_SERVER_DICT[0][k]["ip"]
+					account_port = serverInfo.REGION_AUTH_SERVER_DICT[0][k]["port"]
+
+					channel_info = v["channel"][channel_idx]
+					channel_name = channel_info["name"]
+					addr = channel_info["ip"]
+					port = channel_info["tcp_port"]
+
+					net.SetMarkServer(addr, port)
+					self.stream.SetConnectInfo(addr, port, account_addr, account_port)
+
+					matched = True
+					break
+
+			if False == matched:
+				return
+		except:
+			return
+
+		self.__SetServerInfo("%s, %s " % (server_name, channel_name))
+		id = getValue(logininfo, "id", "")
+		pwd = getValue(logininfo, "pwd", "")
+		self.idEditLine.SetText(id)
+		self.pwdEditLine.SetText(pwd)
+		slot = getValue(logininfo, "slot", "0")
+		locale = getValue(logininfo, "locale", "")
+		locale_dir = getValue(logininfo, "locale_dir", "")
+		is_auto_login = int(getValue(logininfo, "auto_login", "0"))
+
+		self.stream.SetCharacterSlot(int(slot))
+		self.stream.isAutoLogin=is_auto_login
+		self.stream.isAutoSelect=is_auto_login
+
+		if locale and locale_dir:
+			app.ForceSetLocale(locale, locale_dir)
+
+		if 0 != is_auto_login:
+			self.Connect(id, pwd)
+
+		return
+
+
 	def PopupDisplayMessage(self, msg):
 		self.stream.popupWindow.Close()
 		self.stream.popupWindow.Open(msg)
@@ -573,8 +663,12 @@ class LoginWindow(ui.ScriptWindow):
 
 		self.serverList.SelectItem(serverIndex)
 
-		if channelIndex >= 0:
-			self.channelList.SelectItem(channelIndex)
+		if constInfo.ENABLE_RANDOM_CHANNEL_SEL:
+			self.channelList.SelectItem(app.GetRandom(0, self.channelList.GetItemCount()))
+		else:
+			if channelIndex >= 0:
+				self.channelList.SelectItem(channelIndex)
+
 
 		self.serverBoard.SetPosition(self.xServerBoard, self.yServerBoard)
 		self.serverBoard.Show()

@@ -255,6 +255,10 @@ def __InitData():
 	#사랑의 팬던트 착용순간 발동 이펙트
 	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_LOVE_PENDANT_EQUIP, "", "d:/ymir work/effect/etc/buff/buff_item4.mse")
 
+	if app.ENABLE_ACCE_SYSTEM:
+		chrmgr.RegisterCacheEffect(chrmgr.EFFECT_ACCE_SUCCEDED, "", "d:/ymir work/effect/etc/buff/buff_item6.mse")
+		chrmgr.RegisterCacheEffect(chrmgr.EFFECT_ACCE_EQUIP, "", "d:/ymir work/effect/etc/buff/buff_item7.mse")
+
 	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_PENETRATE, "Bip01", "d:/ymir work/effect/hit/gwantong.mse")
 	#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_BLOCK, "", "d:/ymir work/effect/etc/")
 	#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_DODGE, "", "d:/ymir work/effect/etc/")
@@ -450,7 +454,10 @@ def __LoadGameEffect():
 
 	chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+19, "Bip01", "D:/ymir work/pc/common/effect/armor/armor-4-2-1.mse")
 	chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+20, "Bip01", "D:/ymir work/pc/common/effect/armor/armor-4-2-2.mse")
-
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED + 21, "Bip01", "d:/ymir work/pc/common/effect/armor/acc_01.mse")
+	
 	if app.ENABLE_LVL115_ARMOR_EFFECT:
 		chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+21, "Bip01", "D:/ymir work/pc/common/effect/armor/armor-5-1.mse")
 
@@ -719,7 +726,10 @@ def __LoadGameWarriorEx(race, path):
 
 	## Bone
 	chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON, "equip_right_hand")
-
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		chrmgr.RegisterAttachingBoneName(chr.PART_ACCE, "Bip01 Spine2")
+	
 def __LoadGameAssassinEx(race, path):
 	## Assassin
 	#########################################################################################
@@ -932,7 +942,10 @@ def __LoadGameAssassinEx(race, path):
 
 	chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON, "equip_right")
 	chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON_LEFT, "equip_left")
-
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		chrmgr.RegisterAttachingBoneName(chr.PART_ACCE, "Bip01 Spine2")
+	
 def __LoadGameSuraEx(race, path):
 	## Sura
 	#########################################################################################
@@ -1057,7 +1070,10 @@ def __LoadGameSuraEx(race, path):
 	chrmgr.RegisterCacheMotionData(chr.MOTION_MODE_HORSE_ONEHAND_SWORD, HORSE_SKILL_WILDATTACK, "skill_wildattack.msa")
 
 	chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON, "equip_right")
-
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		chrmgr.RegisterAttachingBoneName(chr.PART_ACCE, "Bip01 Spine2")
+	
 def __LoadGameShamanEx(race, path):
 	## Shaman
 	#########################################################################################
@@ -1254,6 +1270,9 @@ def __LoadGameShamanEx(race, path):
 	chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON, "equip_right")
 	chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON_LEFT, "equip_left")
 
+	if app.ENABLE_ACCE_SYSTEM:
+		chrmgr.RegisterAttachingBoneName(chr.PART_ACCE, "Bip01 Spine2")
+	
 if app.ENABLE_WOLFMAN_CHARACTER:
 	def __LoadGameWolfmanEx(race, path):
 
@@ -1388,7 +1407,10 @@ if app.ENABLE_WOLFMAN_CHARACTER:
 		## Bone
 		chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON, "equip_right_weapon")
 		chrmgr.RegisterAttachingBoneName(chr.PART_WEAPON_LEFT, "equip_left_weapon")
-
+		
+		if app.ENABLE_ACCE_SYSTEM:
+			chrmgr.RegisterAttachingBoneName(chr.PART_ACCE, "Bip01 Spine2")
+		
 def __LoadGameSkill():
 
 	try:
@@ -1402,18 +1424,143 @@ def __LoadGameEnemy():
 
 def __LoadGameNPC():
 	try:
-		execfile("npclist.py")
-	except:
-		import exception
-		exception.Abort("__LoadGameNPC")
+		lines = open("npclist.txt", "r").readlines()
+	except IOError:
+		import dbg
+		dbg.LogBox("LoadLocaleError(%(srcFileName)s)" % locals())
+		app.Abort()
+
+	for line in lines:
+		cleaned = line if line[-1] != '\n' else line[:-1]
+		tokens = cleaned.split("\t")
+		if len(tokens) == 0 or not tokens[0]:
+			continue
+
+		try:
+			vnum = int(tokens[0])
+		except ValueError:
+			import dbg
+			dbg.LogBox("LoadGameNPC() - %s - line #%d: %s" % (tokens, lines.index(line), line))
+			app.Abort()
+
+		try:
+			if vnum:
+				chrmgr.RegisterRaceName(vnum, tokens[1].strip())
+			else:
+				chrmgr.RegisterRaceSrcName(tokens[1].strip(), tokens[2].strip())
+		except IndexError:
+			import dbg
+			dbg.LogBox("LoadGameNPC() - %d, %s - line #%d: %s " % (vnum, tokens, lines.index(line), line))
+			app.Abort()
+
 
 # GUILD_BUILDING
 def LoadGuildBuildingList(filename):
-	try:
-		execfile("GuildBuildingList.py")		
-	except:
-		import exception
-		exception.Abort("LoadGuildBuildingList")
+	import uiGuild
+	uiGuild.BUILDING_DATA_LIST = []
+
+	handle = app.OpenTextFile(filename)
+	count = app.GetTextFileLineCount(handle)
+	for i in xrange(count):
+		line = app.GetTextFileLine(handle, i)
+		tokens = line.split("\t")
+
+		TOKEN_VNUM = 0
+		TOKEN_TYPE = 1
+		TOKEN_NAME = 2
+		TOKEN_LOCAL_NAME = 3
+		NO_USE_TOKEN_SIZE_1 = 4
+		NO_USE_TOKEN_SIZE_2 = 5
+		NO_USE_TOKEN_SIZE_3 = 6
+		NO_USE_TOKEN_SIZE_4 = 7
+		TOKEN_X_ROT_LIMIT = 8
+		TOKEN_Y_ROT_LIMIT = 9
+		TOKEN_Z_ROT_LIMIT = 10
+		TOKEN_PRICE = 11
+		TOKEN_MATERIAL = 12
+		TOKEN_NPC = 13
+		TOKEN_GROUP = 14
+		TOKEN_DEPEND_GROUP = 15
+		TOKEN_ENABLE_FLAG = 16
+		LIMIT_TOKEN_COUNT = 17
+
+		if not tokens[TOKEN_VNUM].isdigit():
+			continue
+
+		if len(tokens) < LIMIT_TOKEN_COUNT:
+			import dbg
+			dbg.TraceError("Strange token count [%d/%d] [%s]" % (len(tokens), LIMIT_TOKEN_COUNT, line))
+			continue
+
+		ENABLE_FLAG_TYPE_NOT_USE = False
+		ENABLE_FLAG_TYPE_USE = True
+		ENABLE_FLAG_TYPE_USE_BUT_HIDE = 2
+
+		if ENABLE_FLAG_TYPE_NOT_USE == int(tokens[TOKEN_ENABLE_FLAG]):
+			continue
+
+		vnum = int(tokens[TOKEN_VNUM])
+		type = tokens[TOKEN_TYPE]
+		name = tokens[TOKEN_NAME]
+		localName = tokens[TOKEN_LOCAL_NAME]
+		xRotLimit = int(tokens[TOKEN_X_ROT_LIMIT])
+		yRotLimit = int(tokens[TOKEN_Y_ROT_LIMIT])
+		zRotLimit = int(tokens[TOKEN_Z_ROT_LIMIT])
+		price = tokens[TOKEN_PRICE]
+		material = tokens[TOKEN_MATERIAL]
+
+		folderName = ""
+		if "HEADQUARTER" == type:
+			folderName = "headquarter"
+		elif "FACILITY" == type:
+			folderName = "facility"
+		elif "OBJECT" == type:
+			folderName = "object"
+		elif "WALL" == type:
+			folderName = "fence"
+
+		materialList = ["0", "0", "0"]
+		if material:
+			if material[0] == "\"":
+				material = material[1:]
+			if material[-1] == "\"":
+				material = material[:-1]
+			for one in material.split("/"):
+				data = one.split(",")
+				if 2 != len(data):
+					continue
+				itemID = int(data[0])
+				count = data[1]
+
+				if itemID == uiGuild.MATERIAL_STONE_ID:
+					materialList[uiGuild.MATERIAL_STONE_INDEX] = count
+				elif itemID == uiGuild.MATERIAL_LOG_ID:
+					materialList[uiGuild.MATERIAL_LOG_INDEX] = count
+				elif itemID == uiGuild.MATERIAL_PLYWOOD_ID:
+					materialList[uiGuild.MATERIAL_PLYWOOD_INDEX] = count
+
+		## GuildSymbol 은 일반 NPC 들과 함께 등록한다.
+		import chrmgr
+		chrmgr.RegisterRaceSrcName(name, folderName)
+		chrmgr.RegisterRaceName(vnum, name)
+
+		appendingData = { "VNUM":vnum,
+						  "TYPE":type,
+						  "NAME":name,
+						  "LOCAL_NAME":localName,
+						  "X_ROT_LIMIT":xRotLimit,
+						  "Y_ROT_LIMIT":yRotLimit,
+						  "Z_ROT_LIMIT":zRotLimit,
+						  "PRICE":price,
+						  "MATERIAL":materialList,
+						  "SHOW" : True }
+
+		if ENABLE_FLAG_TYPE_USE_BUT_HIDE == int(tokens[TOKEN_ENABLE_FLAG]):
+			appendingData["SHOW"] = False
+
+		uiGuild.BUILDING_DATA_LIST.append(appendingData)
+
+	app.CloseTextFile(handle)
 
 # END_OF_GUILD_BUILDING
 

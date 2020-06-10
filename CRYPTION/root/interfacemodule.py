@@ -35,11 +35,13 @@ import uiGameButton
 import uiTip
 import uiCube
 import miniMap
-import uiselectitem
+import uiSelectItem
 import uiScriptLocale
 import uiChestDrop
 import event
 import localeInfo
+if app.ENABLE_ACCE_SYSTEM:
+	import uiacce
 
 IsQBHide = 0
 class Interface(object):
@@ -249,7 +251,20 @@ class Interface(object):
 		self.wndCube = uiCube.CubeWindow()
 		self.wndCube.LoadWindow()
 		self.wndCube.Hide()
-
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		def __MakeAcceWindow(self):
+			self.wndAcceCombine = uiacce.CombineWindow()
+			self.wndAcceCombine.LoadWindow()
+			self.wndAcceCombine.Hide()
+			
+			self.wndAcceAbsorption = uiacce.AbsorbWindow()
+			self.wndAcceAbsorption.LoadWindow()
+			self.wndAcceAbsorption.Hide()
+			
+			if self.wndInventory:
+				self.wndInventory.SetAcceWindow(self.wndAcceCombine, self.wndAcceAbsorption)
+	
 	def __MakeCubeResultWindow(self):
 		self.wndCubeResult = uiCube.CubeResultWindow()
 		self.wndCubeResult.LoadWindow()
@@ -257,7 +272,7 @@ class Interface(object):
 
 	# ACCESSORY_REFINE_ADD_METIN_STONE
 	def __MakeItemSelectWindow(self):
-		self.wndItemSelect = uiselectitem.SelectItemWindow()
+		self.wndItemSelect = uiSelectItem.SelectItemWindow()
 		self.wndItemSelect.Hide()
 	# END_OF_ACCESSORY_REFINE_ADD_METIN_STONE
 
@@ -276,7 +291,9 @@ class Interface(object):
 		self.__MakeWebWindow()
 		self.__MakeCubeWindow()
 		self.__MakeCubeResultWindow()
-
+		
+		if app.ENABLE_ACCE_SYSTEM:
+			self.__MakeAcceWindow()
 
 		# ACCESSORY_REFINE_ADD_METIN_STONE
 		self.__MakeItemSelectWindow()
@@ -294,7 +311,11 @@ class Interface(object):
 		self.wndSafebox.SetItemToolTip(self.tooltipItem)
 		self.wndCube.SetItemToolTip(self.tooltipItem)
 		self.wndCubeResult.SetItemToolTip(self.tooltipItem)
-
+		
+		if app.ENABLE_ACCE_SYSTEM:
+			self.wndAcceCombine.SetItemToolTip(self.tooltipItem)
+			self.wndAcceAbsorption.SetItemToolTip(self.tooltipItem)
+		
 		# ITEM_MALL
 		self.wndMall.SetItemToolTip(self.tooltipItem)
 		# END_OF_ITEM_MALL
@@ -401,7 +422,13 @@ class Interface(object):
 
 		if self.wndCube:
 			self.wndCube.Destroy()
-
+		
+		if app.ENABLE_ACCE_SYSTEM and  self.wndAcceCombine:
+			self.wndAcceCombine.Destroy()
+			
+		if app.ENABLE_ACCE_SYSTEM and self.wndAcceAbsorption:
+			self.wndAcceAbsorption.Destroy()
+		
 		if self.wndCubeResult:
 			self.wndCubeResult.Destroy()
 
@@ -489,6 +516,9 @@ class Interface(object):
 		del self.tipBoard
 		del self.bigBoard
 		del self.wndItemSelect
+		if app.ENABLE_ACCE_SYSTEM:
+			del self.wndAcceCombine
+			del self.wndAcceAbsorption
 		if self.dlgChestDrop:
 			del self.dlgChestDrop
 
@@ -966,6 +996,9 @@ class Interface(object):
 			if app.ENABLE_DRAGON_SOUL_SYSTEM:
 				self.wndDragonSoul.HighlightSlot(inven_pos)
 
+		elif app.ENABLE_HIGHLIGHT_NEW_ITEM and player.SLOT_TYPE_INVENTORY == inven_type:
+			self.wndInventory.HighlightSlot(inven_pos)
+
 	def DragonSoulGiveQuilification(self):
 		self.DRAGON_SOUL_IS_QUALIFIED = True
 		self.wndExpandedTaskBar.SetToolTipText(uiTaskBar.ExpandedTaskBar.BUTTON_DRAGON_SOUL, uiScriptLocale.TASKBAR_DRAGON_SOUL)
@@ -1073,6 +1106,38 @@ class Interface(object):
 		if not self.wndInventory.IsShow():
 			self.wndInventory.Show()
 
+
+		def ActAcce(self, iAct, bWindow):
+			board = (self.wndAcceAbsorption,self.wndAcceCombine)[int(bWindow)]
+			if iAct == 1:
+				self.ActAcceOpen(board)
+				
+			elif iAct == 2:
+				self.ActAcceClose(board)
+			
+			
+			elif iAct == 3 or iAct == 4:
+				self.ActAcceRefresh(board, iAct)
+	
+		
+		def ActAcceOpen(self,board):
+			if not board.IsOpened():
+				board.Open()
+			if not self.wndInventory.IsShow():
+				self.wndInventory.Show()
+			self.wndInventory.RefreshBagSlotWindow()
+		
+		
+		def ActAcceClose(self,board):
+			if board.IsOpened():
+				board.Close()
+			self.wndInventory.RefreshBagSlotWindow()
+		
+		def ActAcceRefresh(self,board,iAct):
+			if board.IsOpened():
+				board.Refresh(iAct)
+			self.wndInventory.RefreshBagSlotWindow()
+	
 	def UpdateCubeInfo(self, gold, itemVnum, count):
 		self.wndCube.UpdateInfo(gold, itemVnum, count)
 

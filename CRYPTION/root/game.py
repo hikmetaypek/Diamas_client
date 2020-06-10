@@ -815,6 +815,8 @@ class GameWindow(ui.ScriptWindow):
 		if self.mapNameShower:
 			self.mapNameShower.ShowMapName(mapName, x, y)
 
+		if self.interface:
+			self.interface.SetMapName(mapName)
 	# END_OF_SHOW_LOCAL_MAP_NAME
 
 	def BINARY_OpenAtlasWindow(self):
@@ -2128,6 +2130,17 @@ class GameWindow(ui.ScriptWindow):
 			snd.FadeOutAllMusic()
 			musicInfo.LoadLastPlayFieldMusic()
 			snd.FadeInMusic("BGM/" + musicInfo.fieldMusic)
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		def ActAcce(self, iAct, bWindow):
+			if self.interface:
+				self.interface.ActAcce(iAct, bWindow)
 
+		def AlertAcce(self, bWindow):
+			snd.PlaySound("sound/ui/make_soket.wav")
+			if bWindow:
+				self.PopupMessage(localeInfo.ACCE_DEL_SERVEITEM)
+			else:
+				self.PopupMessage(localeInfo.ACCE_DEL_ABSORDITEM)
 	# END_OF_WEDDING
 

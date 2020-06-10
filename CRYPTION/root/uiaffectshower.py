@@ -610,7 +610,7 @@ class AffectShower(ui.Window):
 			self.__ArrangeImageList()
 
 	def SetPlayTime(self, playTime):
-		return
+		return # TODO
 
 	def __AppendAffect(self, affect):
 

@@ -111,7 +111,7 @@ class ExchangeDialog(ui.ScriptWindow):
 		self.dlgPickMoney.Open(player.GetElk())
 
 	def OnPickMoney(self, money):
-		net.SendExchangeElkAddPacket(str(money))
+		net.SendExchangeElkAddPacket(money)
 
 	def AcceptExchange(self):
 		net.SendExchangeAcceptPacket()
@@ -126,7 +126,8 @@ class ExchangeDialog(ui.ScriptWindow):
 			net.SendExchangeElkAddPacket(mouseModule.mouseController.GetAttachedMoneyAmount())
 		else:
 			attachedSlotType = mouseModule.mouseController.GetAttachedType()
-			if (player.SLOT_TYPE_INVENTORY == attachedSlotType or player.SLOT_TYPE_DRAGON_SOUL_INVENTORY == attachedSlotType):
+			if (player.SLOT_TYPE_INVENTORY == attachedSlotType
+				or player.SLOT_TYPE_DRAGON_SOUL_INVENTORY == attachedSlotType):
 				attachedInvenType = player.SlotTypeToInvenType(attachedSlotType)
 				SrcSlotNumber = mouseModule.mouseController.GetAttachedSlotNumber()
 				DstSlotNumber = SlotIndex
@@ -144,7 +145,7 @@ class ExchangeDialog(ui.ScriptWindow):
 	def SelectOwnerItemSlot(self, SlotIndex):
 		if player.ITEM_MONEY == mouseModule.mouseController.GetAttachedItemIndex():
 			money = mouseModule.mouseController.GetAttachedItemCount()
-			net.SendExchangeElkAddPacket(str(money))
+			net.SendExchangeElkAddPacket(money)
 
 	def RefreshOwnerSlot(self):
 		for i in xrange(exchange.EXCHANGE_ITEM_MAX_NUM):

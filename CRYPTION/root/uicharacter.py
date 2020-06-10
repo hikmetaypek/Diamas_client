@@ -1010,7 +1010,10 @@ class CharacterWindow(ui.ScriptWindow):
 
 		for slotWindow in self.skillPageDict.values():
 			if slotWindow.HasSlot(slotIndex):
-				slotWindow.ActivateSlot(slotIndex)
+				if app.ENABLE_ACCE_SYSTEM:
+					slotWindow.ActivateSlotOld(slotIndex)
+				else:
+					slotWindow.ActivateSlot(slotIndex)
 				return
 
 	def OnDeactivateSkill(self, slotIndex):
@@ -1020,7 +1023,10 @@ class CharacterWindow(ui.ScriptWindow):
 
 		for slotWindow in self.skillPageDict.values():
 			if slotWindow.HasSlot(slotIndex):
-				slotWindow.DeactivateSlot(slotIndex)
+				if app.ENABLE_ACCE_SYSTEM:
+					slotWindow.DeactivateSlotOld(slotIndex)
+				else:
+					slotWindow.DeactivateSlot(slotIndex)
 				return
 
 	def __ShowJobToolTip(self):

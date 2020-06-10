@@ -19,6 +19,8 @@ import constInfo
 import ime
 import wndMgr
 import exchange
+if app.ENABLE_ACCE_SYSTEM:
+	import acce
 
 ITEM_MALL_BUTTON_ENABLE = True
 
@@ -254,7 +256,10 @@ class InventoryWindow(ui.ScriptWindow):
 	isLoaded = 0
 	isOpenedCostumeWindowWhenClosingInventory = 0		# 인벤토리 닫을 때 코스츔이 열려있었는지 여부-_-; 네이밍 ㅈㅅ
 	isOpenedBeltWindowWhenClosingInventory = 0		# 인벤토리 닫을 때 벨트 인벤토리가 열려있었는지 여부-_-; 네이밍 ㅈㅅ
-
+	
+	if app.ENABLE_HIGHLIGHT_NEW_ITEM:
+		liHighlightedItems = []
+	
 	def __init__(self):
 		ui.ScriptWindow.__init__(self)
 
@@ -396,6 +401,8 @@ class InventoryWindow(ui.ScriptWindow):
 		self.wndCostume = None
  		#####
 
+		if app.ENABLE_ACCE_SYSTEM:
+			self.listAttachedAcces = []
 		## Refresh
 		self.SetInventoryPage(0)
 		self.SetEquipmentPage(0)
@@ -571,12 +578,52 @@ class InventoryWindow(ui.ScriptWindow):
 
 				else:
 					self.wndItem.DeactivateSlot(i)
-
+			
+			if app.ENABLE_ACCE_SYSTEM:
+				slotNumberChecked = 0
+				if not constInfo.IS_AUTO_POTION(itemVnum):
+					if app.ENABLE_HIGHLIGHT_NEW_ITEM:
+						if not slotNumber in self.liHighlightedItems:
+							self.wndItem.DeactivateSlot(i)
+					else:
+						self.wndItem.DeactivateSlot(i)
+				
+				for j in xrange(acce.WINDOW_MAX_MATERIALS):
+					(isHere, iCell) = acce.GetAttachedItem(j)
+					if isHere:
+						if iCell == slotNumber:
+							self.wndItem.ActivateSlot(i, (36.00 / 255.0), (222.00 / 255.0), (3.00 / 255.0), 1.0)
+							if not slotNumber in self.listAttachedAcces:
+								self.listAttachedAcces.append(slotNumber)
+							
+							slotNumberChecked = 1
+					else:
+						if slotNumber in self.listAttachedAcces and not slotNumberChecked:
+							self.wndItem.DeactivateSlot(i)
+							self.listAttachedAcces.remove(slotNumber)
+			
+			elif app.ENABLE_HIGHLIGHT_NEW_ITEM and not constInfo.IS_AUTO_POTION(itemVnum):
+				if not slotNumber in self.liHighlightedItems:
+					self.wndItem.DeactivateSlot(i)
+			
 		self.wndItem.RefreshSlot()
+		if app.ENABLE_HIGHLIGHT_NEW_ITEM:
+			self.__RefreshHighlights()
 
 		if self.wndBelt:
 			self.wndBelt.RefreshSlot()
+	
+	if app.ENABLE_HIGHLIGHT_NEW_ITEM:
+		def HighlightSlot(self, slot):
+			if not slot in self.liHighlightedItems:
+				self.liHighlightedItems.append(slot)
 
+		def __RefreshHighlights(self):
+			for i in xrange(player.INVENTORY_PAGE_SIZE):
+				slotNumber = self.__InventoryLocalSlotPosToGlobalSlotPos(i)
+				if slotNumber in self.liHighlightedItems:
+					self.wndItem.ActivateSlot(i)
+	
 	def RefreshEquipSlotWindow(self):
 		getItemVNum=player.GetItemIndex
 		getItemCount=player.GetItemCount
@@ -889,11 +936,24 @@ class InventoryWindow(ui.ScriptWindow):
 		targetIndex = player.GetItemIndex(targetSlotPos)
 
 		if not player.CanDetach(scrollIndex, targetSlotPos):
-			chat.AppendChat(chat.CHAT_TYPE_INFO, localeInfo.REFINE_FAILURE_METIN_INSEPARABLE_ITEM)
+			if app.ENABLE_ACCE_SYSTEM:
+				item.SelectItem(scrollIndex)
+				if item.GetValue(0) == acce.CLEAN_ATTR_VALUE0:
+					chat.AppendChat(chat.CHAT_TYPE_INFO, localeInfo.ACCE_FAILURE_CLEAN)
+				else:
+					chat.AppendChat(chat.CHAT_TYPE_INFO, localeInfo.REFINE_FAILURE_METIN_INSEPARABLE_ITEM)
+			else:
+				chat.AppendChat(chat.CHAT_TYPE_INFO, localeInfo.REFINE_FAILURE_METIN_INSEPARABLE_ITEM)
 			return
 
 		self.questionDialog = uiCommon.QuestionDialog()
 		self.questionDialog.SetText(localeInfo.REFINE_DO_YOU_SEPARATE_METIN)
+		if app.ENABLE_ACCE_SYSTEM:
+			item.SelectItem(targetIndex)
+			if item.GetItemType() == item.ITEM_TYPE_COSTUME and item.GetItemSubType() == item.COSTUME_TYPE_ACCE:
+				item.SelectItem(scrollIndex)
+				if item.GetValue(0) == acce.CLEAN_ATTR_VALUE0:
+					self.questionDialog.SetText(localeInfo.ACCE_DO_YOU_CLEAN)
 		self.questionDialog.SetAcceptEvent(ui.__mem_func__(self.OnDetachMetinFromItem))
 		self.questionDialog.SetCancelEvent(ui.__mem_func__(self.OnCloseQuestionDialog))
 		self.questionDialog.Open()
@@ -934,9 +994,15 @@ class InventoryWindow(ui.ScriptWindow):
 			self.tooltipItem.HideToolTip()
 
 	def OverInItem(self, overSlotPos):
-		overSlotPos = self.__InventoryLocalSlotPosToGlobalSlotPos(overSlotPos)
+		overSlotPosGlobal = self.__InventoryLocalSlotPosToGlobalSlotPos(overSlotPos)
 		self.wndItem.SetUsableItem(False)
-
+		
+		
+		if app.ENABLE_HIGHLIGHT_NEW_ITEM and overSlotPosGlobal in self.liHighlightedItems:
+			self.liHighlightedItems.remove(overSlotPosGlobal)
+			self.wndItem.DeactivateSlot(overSlotPos)
+		
+		
 		if mouseModule.mouseController.isAttached():
 			attachedItemType = mouseModule.mouseController.GetAttachedType()
 			if player.SLOT_TYPE_INVENTORY == attachedItemType:
@@ -946,12 +1012,12 @@ class InventoryWindow(ui.ScriptWindow):
 
 				if attachedItemVNum==player.ITEM_MONEY: # @fixme005
 					pass
-				elif self.__CanUseSrcItemToDstItem(attachedItemVNum, attachedSlotPos, overSlotPos):
+				elif self.__CanUseSrcItemToDstItem(attachedItemVNum, attachedSlotPos, overSlotPosGlobal):
 					self.wndItem.SetUsableItem(True)
-					self.ShowToolTip(overSlotPos)
+					self.ShowToolTip(overSlotPosGlobal)
 					return
 
-		self.ShowToolTip(overSlotPos)
+		self.ShowToolTip(overSlotPosGlobal)
 
 
 	def __IsUsableItemToItem(self, srcItemVNum, srcSlotPos):
@@ -1060,7 +1126,7 @@ class InventoryWindow(ui.ScriptWindow):
 			return False
 
 		for i in xrange(player.METIN_SOCKET_MAX_NUM):
-			if player.GetItemAttribute(dstSlotPos, i) != 0:
+			if player.GetItemAttribute(dstSlotPos, i)[0] != 0:
 				return True
 
 		return False
@@ -1077,7 +1143,7 @@ class InventoryWindow(ui.ScriptWindow):
 				return False
 
 			for i in xrange(player.METIN_SOCKET_MAX_NUM):
-				if player.GetItemAttribute(dstSlotPos, i) != 0:
+				if player.GetItemAttribute(dstSlotPos, i)[0] != 0:
 					return True
 
 			return False
@@ -1093,7 +1159,7 @@ class InventoryWindow(ui.ScriptWindow):
 				return False
 
 			for i in xrange(player.METIN_SOCKET_MAX_NUM):
-				if player.GetItemAttribute(dstSlotPos, i) != 0:
+				if player.GetItemAttribute(dstSlotPos, i)[0] != 0:
 					return True
 
 			return False
@@ -1156,7 +1222,7 @@ class InventoryWindow(ui.ScriptWindow):
 
 		attrCount = 0
 		for i in xrange(player.METIN_SOCKET_MAX_NUM):
-			if player.GetItemAttribute(dstSlotPos, i) != 0:
+			if player.GetItemAttribute(dstSlotPos, i)[0] != 0:
 				attrCount += 1
 
 		if attrCount<4:
@@ -1189,6 +1255,10 @@ class InventoryWindow(ui.ScriptWindow):
 		if app.ENABLE_DRAGON_SOUL_SYSTEM:
 			if self.wndDragonSoulRefine.IsShow():
 				self.wndDragonSoulRefine.AutoSetItem((player.INVENTORY, slotIndex), 1)
+				return
+		if app.ENABLE_ACCE_SYSTEM:
+			if self.isShowAcceWindow():
+				acce.Add(player.INVENTORY, slotIndex, 255)
 				return
 
 		self.__UseItem(slotIndex)
@@ -1254,7 +1324,23 @@ class InventoryWindow(ui.ScriptWindow):
 	def SetDragonSoulRefineWindow(self, wndDragonSoulRefine):
 		if app.ENABLE_DRAGON_SOUL_SYSTEM:
 			self.wndDragonSoulRefine = wndDragonSoulRefine
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		def SetAcceWindow(self, wndAcceCombine, wndAcceAbsorption):
+			self.wndAcceCombine = wndAcceCombine
+			self.wndAcceAbsorption = wndAcceAbsorption
 
+		def isShowAcceWindow(self):
+			if self.wndAcceCombine:
+				if self.wndAcceCombine.IsShow():
+					return 1
+
+			if self.wndAcceAbsorption:
+				if self.wndAcceAbsorption.IsShow():
+					return 1
+			
+			return 0
+	
 	def OnMoveWindow(self, x, y):
 #		print "Inventory Global Pos : ", self.GetGlobalPosition()
 		if self.wndBelt:

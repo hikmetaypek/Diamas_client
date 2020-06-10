@@ -26,6 +26,8 @@ class OptionDialog(ui.ScriptWindow):
 		self.RefreshAlwaysShowName()
 		self.RefreshShowDamage()
 		self.RefreshShowSalesText()
+		if app.WJ_SHOW_MOB_INFO:
+			self.RefreshShowMobInfo()
 
 	def __del__(self):
 		ui.ScriptWindow.__del__(self)
@@ -41,6 +43,8 @@ class OptionDialog(ui.ScriptWindow):
 		self.alwaysShowNameButtonList = []
 		self.showDamageButtonList = []
 		self.showsalesTextButtonList = []
+		if app.WJ_SHOW_MOB_INFO:
+			self.showMobInfoButtonList = []
 
 	def Destroy(self):
 		self.ClearDictionary()
@@ -82,6 +86,9 @@ class OptionDialog(ui.ScriptWindow):
 			self.showDamageButtonList.append(GetObject("show_damage_off_button"))
 			self.showsalesTextButtonList.append(GetObject("salestext_on_button"))
 			self.showsalesTextButtonList.append(GetObject("salestext_off_button"))
+			if app.WJ_SHOW_MOB_INFO:
+				self.showMobInfoButtonList.append(GetObject("show_mob_level_button"))
+				self.showMobInfoButtonList.append(GetObject("show_mob_AI_flag_button"))
 
 			global MOBILE
 			if MOBILE:
@@ -142,6 +149,12 @@ class OptionDialog(ui.ScriptWindow):
 
 		self.showsalesTextButtonList[0].SAFE_SetEvent(self.__OnClickSalesTextOnButton)
 		self.showsalesTextButtonList[1].SAFE_SetEvent(self.__OnClickSalesTextOffButton)
+
+		if app.WJ_SHOW_MOB_INFO:
+			self.showMobInfoButtonList[0].SetToggleUpEvent(self.__OnClickShowMobLevelButton)
+			self.showMobInfoButtonList[0].SetToggleDownEvent(self.__OnClickShowMobLevelButton)
+			self.showMobInfoButtonList[1].SetToggleUpEvent(self.__OnClickShowMobAIFlagButton)
+			self.showMobInfoButtonList[1].SetToggleDownEvent(self.__OnClickShowMobAIFlagButton)
 
 		self.__ClickRadioButton(self.nameColorModeButtonList, constInfo.GET_CHRNAME_COLOR_INDEX())
 		self.__ClickRadioButton(self.viewTargetBoardButtonList, constInfo.GET_VIEW_OTHER_EMPIRE_PLAYER_TARGET_BOARD())
@@ -258,6 +271,14 @@ class OptionDialog(ui.ScriptWindow):
 	def __OnClickSalesTextOffButton(self):
 		systemSetting.SetShowSalesTextFlag(False)
 		self.RefreshShowSalesText()
+
+	if app.WJ_SHOW_MOB_INFO:
+		def __OnClickShowMobLevelButton(self):
+			systemSetting.SetShowMobLevel(not systemSetting.IsShowMobLevel())
+			self.RefreshShowMobInfo()
+		def __OnClickShowMobAIFlagButton(self):
+			systemSetting.SetShowMobAIFlag(not systemSetting.IsShowMobAIFlag())
+			self.RefreshShowMobInfo()
 
 	def __CheckPvPProtectedLevelPlayer(self):
 		if player.GetStatus(player.LEVEL)<constInfo.PVPMODE_PROTECTED_LEVEL:
@@ -472,6 +493,17 @@ class OptionDialog(ui.ScriptWindow):
 		else:
 			self.showsalesTextButtonList[0].SetUp()
 			self.showsalesTextButtonList[1].Down()
+
+	if app.WJ_SHOW_MOB_INFO:
+		def RefreshShowMobInfo(self):
+			if systemSetting.IsShowMobLevel():
+				self.showMobInfoButtonList[0].Down()
+			else:
+				self.showMobInfoButtonList[0].SetUp()
+			if systemSetting.IsShowMobAIFlag():
+				self.showMobInfoButtonList[1].Down()
+			else:
+				self.showMobInfoButtonList[1].SetUp()
 
 	def OnBlockMode(self, mode):
 		global blockMode

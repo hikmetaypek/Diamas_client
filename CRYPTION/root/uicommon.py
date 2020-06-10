@@ -244,8 +244,8 @@ class QuestionDialog(ui.ScriptWindow):
 		self.SetCenterPosition()
 		self.UpdateRect()
 
-	def SAFE_SetAcceptEvent(self, event, *args):
-		self.acceptButton.SAFE_SetEvent(event, args)
+	def SAFE_SetAcceptEvent(self, event):
+		self.acceptButton.SAFE_SetEvent(event)
 
 	def SAFE_SetCancelEvent(self, event):
 		self.cancelButton.SAFE_SetEvent(event)

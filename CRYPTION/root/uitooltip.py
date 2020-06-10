@@ -18,6 +18,9 @@ import ui
 import mouseModule
 import constInfo
 
+if app.ENABLE_ACCE_SYSTEM:
+	import acce
+
 WARP_SCROLLS = [22011, 22000, 22010]
 
 DESC_DEFAULT_MAX_COLS = 26
@@ -707,19 +710,57 @@ class ItemToolTip(ToolTip):
 		atkGrade = item.GetValue(1)
 		self.AppendTextLine(localeInfo.TOOLTIP_ITEM_ATT_GRADE % atkGrade, self.GetChangeTextLineColor(atkGrade))
 
-	def __AppendAttackPowerInfo(self):
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		# def CalcAcceValue(self, value, abs):
+			# if not value:
+				# return 0
+			
+			# valueCalc = int((round(value * abs) / 100) - 0.5) + int(int((round(value * abs) / 100) - 0.5) > 0)
+			# if valueCalc <= 0 and value > 0:
+				# value = 1
+			# else:
+				# value = valueCalc
+			
+			# return value
+		
+		#@ikd
+		def CalcAcceValue(self, value, abs):
+			if not value:
+				return 0
+			
+			valueCalc 	= round(value * abs) / 100
+			valueCalc 	-= 0.5
+			valueCalc 	= int(valueCalc) +1 if valueCalc > 0 else int(valueCalc)
+			value 		= 1 if (valueCalc <= 0 and value > 0) else valueCalc
+			return value
+	
+	
+	def __AppendAttackPowerInfo(self ,itemAbsChance = 0):
 		minPower = item.GetValue(3)
 		maxPower = item.GetValue(4)
 		addPower = item.GetValue(5)
+		
+		if app.ENABLE_ACCE_SYSTEM:
+			if itemAbsChance != 0:
+				minPower = self.CalcAcceValue(minPower, itemAbsChance)
+				maxPower = self.CalcAcceValue(maxPower, itemAbsChance)
+				addPower = self.CalcAcceValue(addPower, itemAbsChance)
 		if maxPower > minPower:
 			self.AppendTextLine(localeInfo.TOOLTIP_ITEM_ATT_POWER % (minPower+addPower, maxPower+addPower), self.POSITIVE_COLOR)
 		else:
 			self.AppendTextLine(localeInfo.TOOLTIP_ITEM_ATT_POWER_ONE_ARG % (minPower+addPower), self.POSITIVE_COLOR)
 
-	def __AppendMagicAttackInfo(self):
+	def __AppendMagicAttackInfo(self, itemAbsChance = 0):
 		minMagicAttackPower = item.GetValue(1)
 		maxMagicAttackPower = item.GetValue(2)
 		addPower = item.GetValue(5)
+
+		if app.ENABLE_ACCE_SYSTEM:
+			if itemAbsChance != 0:
+				minMagicAttackPower = self.CalcAcceValue(minMagicAttackPower, itemAbsChance)
+				maxMagicAttackPower = self.CalcAcceValue(maxMagicAttackPower, itemAbsChance)
+				addPower 			= self.CalcAcceValue(addPower, itemAbsChance)
 
 		if minMagicAttackPower > 0 or maxMagicAttackPower > 0:
 			if maxMagicAttackPower > minMagicAttackPower:
@@ -727,13 +768,17 @@ class ItemToolTip(ToolTip):
 			else:
 				self.AppendTextLine(localeInfo.TOOLTIP_ITEM_MAGIC_ATT_POWER_ONE_ARG % (minMagicAttackPower+addPower), self.POSITIVE_COLOR)
 
-	def __AppendMagicDefenceInfo(self):
+	def __AppendMagicDefenceInfo(self, itemAbsChance = 0):
 		magicDefencePower = item.GetValue(0)
 
+		if app.ENABLE_ACCE_SYSTEM:
+			if itemAbsChance != 0:
+				magicDefencePower = self.CalcAcceValue(magicDefencePower, itemAbsChance)
+		
 		if magicDefencePower > 0:
 			self.AppendTextLine(localeInfo.TOOLTIP_ITEM_MAGIC_DEF_POWER % magicDefencePower, self.GetChangeTextLineColor(magicDefencePower))
 
-	def __AppendAttributeInformation(self, attrSlot):
+	def __AppendAttributeInformation(self, attrSlot, itemAbsChance = 0):
 		if 0 != attrSlot:
 
 			for i in xrange(player.ATTRIBUTE_SLOT_MAX_NUM):
@@ -744,6 +789,14 @@ class ItemToolTip(ToolTip):
 					continue
 
 				affectString = self.__GetAffectString(type, value)
+				
+				if app.ENABLE_ACCE_SYSTEM:
+					if item.GetItemType() == item.ITEM_TYPE_COSTUME:
+						if item.GetItemSubType() == item.COSTUME_TYPE_ACCE:
+							if itemAbsChance != 0:
+								value = self.CalcAcceValue(value, itemAbsChance)
+								affectString = self.__GetAffectString(type, value)
+				
 				if affectString:
 					affectColor = self.__GetAttributeColor(i, value)
 					self.AppendTextLine(affectString, affectColor)
@@ -870,6 +923,8 @@ class ItemToolTip(ToolTip):
 		isCostumeItem = 0
 		isCostumeHair = 0
 		isCostumeBody = 0
+		if app.ENABLE_ACCE_SYSTEM:
+			isCostumeAcce = 0
 		if app.ENABLE_MOUNT_COSTUME_SYSTEM:
 			isCostumeMount = 0
 		if app.ENABLE_ACCE_COSTUME_SYSTEM:
@@ -882,6 +937,8 @@ class ItemToolTip(ToolTip):
 				isCostumeItem = 1
 				isCostumeHair = item.COSTUME_TYPE_HAIR == itemSubType
 				isCostumeBody = item.COSTUME_TYPE_BODY == itemSubType
+				if app.ENABLE_ACCE_SYSTEM:
+					isCostumeAcce = itemSubType == item.COSTUME_TYPE_ACCE
 				if app.ENABLE_MOUNT_COSTUME_SYSTEM:
 					isCostumeMount = item.COSTUME_TYPE_MOUNT == itemSubType
 				if app.ENABLE_ACCE_COSTUME_SYSTEM:
@@ -967,8 +1024,63 @@ class ItemToolTip(ToolTip):
 		## 코스츔 아이템 ##
 		elif 0 != isCostumeItem:
 			self.__AppendLimitInformation()
-			self.__AppendAffectInformation()
-			self.__AppendAttributeInformation(attrSlot)
+			
+			if app.ENABLE_ACCE_SYSTEM and isCostumeAcce:
+				## ABSORPTION RATE
+				absChance = int(metinSlot[acce.ABSORPTION_SOCKET])
+				self.AppendTextLine(localeInfo.ACCE_ABSORB_CHANCE % (absChance), self.CONDITION_COLOR)
+				## END ABSOPRTION RATE
+				
+				itemAbsorbedVnum = int(metinSlot[acce.ABSORBED_SOCKET])
+				if itemAbsorbedVnum:
+					## ATTACK / DEFENCE
+					item.SelectItem(itemAbsorbedVnum)
+					if item.GetItemType() == item.ITEM_TYPE_WEAPON:
+						if item.GetItemSubType() == item.WEAPON_FAN:
+							self.__AppendMagicAttackInfo(metinSlot[acce.ABSORPTION_SOCKET])
+							item.SelectItem(itemAbsorbedVnum)
+							self.__AppendAttackPowerInfo(metinSlot[acce.ABSORPTION_SOCKET])
+						else:
+							self.__AppendAttackPowerInfo(metinSlot[acce.ABSORPTION_SOCKET])
+							item.SelectItem(itemAbsorbedVnum)
+							self.__AppendMagicAttackInfo(metinSlot[acce.ABSORPTION_SOCKET])
+					elif item.GetItemType() == item.ITEM_TYPE_ARMOR:
+						defGrade = item.GetValue(1)
+						defBonus = item.GetValue(5) * 2
+						defGrade = self.CalcAcceValue(defGrade, metinSlot[acce.ABSORPTION_SOCKET])
+						defBonus = self.CalcAcceValue(defBonus, metinSlot[acce.ABSORPTION_SOCKET])
+						
+						if defGrade > 0:
+							self.AppendSpace(5)
+							self.AppendTextLine(localeInfo.TOOLTIP_ITEM_DEF_GRADE % (defGrade + defBonus), self.GetChangeTextLineColor(defGrade))
+						
+						item.SelectItem(itemAbsorbedVnum)
+						self.__AppendMagicDefenceInfo(metinSlot[acce.ABSORPTION_SOCKET])
+					## END ATTACK / DEFENCE
+					
+					## EFFECT
+					item.SelectItem(itemAbsorbedVnum)
+					for i in xrange(item.ITEM_APPLY_MAX_NUM):
+						(affectType, affectValue) = item.GetAffect(i)
+						affectValue = self.CalcAcceValue(affectValue, metinSlot[acce.ABSORPTION_SOCKET])
+						affectString = self.__GetAffectString(affectType, affectValue)
+						if affectString and affectValue > 0:
+							self.AppendTextLine(affectString, self.GetChangeTextLineColor(affectValue))
+						
+						item.SelectItem(itemAbsorbedVnum)
+					# END EFFECT
+					
+					item.SelectItem(itemVnum)
+					## ATTR
+					self.__AppendAttributeInformation(attrSlot, metinSlot[acce.ABSORPTION_SOCKET])
+					# END ATTR
+				else:
+					# ATTR
+					self.__AppendAttributeInformation(attrSlot)
+					# END ATTR
+			else:
+				self.__AppendAffectInformation()
+				self.__AppendAttributeInformation(attrSlot)
 
 			self.AppendWearableInformation()
 
@@ -1245,9 +1357,8 @@ class ItemToolTip(ToolTip):
 		return (self.__IsOldHair(itemVnum) or
 			self.__IsNewHair(itemVnum) or
 			self.__IsNewHair2(itemVnum) or
-			self.__IsNewHair3(itemVnum) or
-			self.__IsCostumeHair(itemVnum)
-			)
+			self.__IsNewHair3(itemVnum)
+		)
 
 	def __IsOldHair(self, itemVnum):
 		return itemVnum > 73000 and itemVnum < 74000
@@ -1266,9 +1377,6 @@ class ItemToolTip(ToolTip):
 			(74762 < itemVnum and itemVnum < 74772) or
 			(45000 < itemVnum and itemVnum < 47000))
 
-	def __IsCostumeHair(self, itemVnum):
-		return app.ENABLE_COSTUME_SYSTEM and self.__IsNewHair3(itemVnum - 100000)
-
 	def __AppendHairIcon(self, itemVnum):
 		itemImage = ui.ImageBox()
 		itemImage.SetParent(self)
@@ -1282,8 +1390,6 @@ class ItemToolTip(ToolTip):
 			itemImage.LoadImage("d:/ymir work/item/quest/"+str(itemVnum-1000)+".tga")
 		elif self.__IsNewHair2(itemVnum):
 			itemImage.LoadImage("icon/hair/%d.sub" % (itemVnum))
-		elif self.__IsCostumeHair(itemVnum):
-			itemImage.LoadImage("icon/hair/%d.sub" % (itemVnum - 100000))
 
 		itemImage.SetPosition(itemImage.GetWidth()/2, self.toolTipHeight)
 		self.toolTipHeight += itemImage.GetHeight()
@@ -1830,7 +1936,211 @@ class ItemToolTip(ToolTip):
 			endTime += app.GetGlobalTimeStamp()
 
 		self.AppendMallItemLastTime(endTime)
+	
+	if app.ENABLE_ACCE_SYSTEM:
+		def SetAcceResultItem(self, slotIndex, window_type = player.INVENTORY):
+			(itemVnum, MinAbs, MaxAbs) = acce.GetResultItem()
+			if not itemVnum:
+				return
+			
+			self.ClearToolTip()
+			
+			metinSlot 	= [player.GetItemMetinSocket(window_type, slotIndex, i) 	for i in xrange(player.METIN_SOCKET_MAX_NUM)	]
+			attrSlot 	= [player.GetItemAttribute(window_type, slotIndex, i) 		for i in xrange(player.ATTRIBUTE_SLOT_MAX_NUM)	]
+			
+			item.SelectItem(itemVnum)
+			itemType = item.GetItemType()
+			itemSubType = item.GetItemSubType()
+			if itemType != item.ITEM_TYPE_COSTUME and itemSubType != item.COSTUME_TYPE_ACCE:
+				return
+			
+			absChance = MaxAbs
+			itemDesc = item.GetItemDescription()
+			self.__AdjustMaxWidth(attrSlot, itemDesc)
+			self.__SetItemTitle(itemVnum, metinSlot, attrSlot)
+			self.AppendDescription(itemDesc, 26)
+			self.AppendDescription(item.GetItemSummary(), 26, self.CONDITION_COLOR)
+			self.__AppendLimitInformation()
+			
+			## ABSORPTION RATE
+			if MinAbs == MaxAbs:
+				self.AppendTextLine(localeInfo.ACCE_ABSORB_CHANCE % (MinAbs), self.CONDITION_COLOR)
+			else:
+				self.AppendTextLine(localeInfo.ACCE_ABSORB_CHANCE2 % (MinAbs, MaxAbs), self.CONDITION_COLOR)
+			## END ABSOPRTION RATE
+			
+			itemAbsorbedVnum = int(metinSlot[acce.ABSORBED_SOCKET])
+			if itemAbsorbedVnum:
+				## ATTACK / DEFENCE
+				item.SelectItem(itemAbsorbedVnum)
+				if item.GetItemType() == item.ITEM_TYPE_WEAPON:
+					if item.GetItemSubType() == item.WEAPON_FAN:
+						self.__AppendMagicAttackInfo(absChance)
+						item.SelectItem(itemAbsorbedVnum)
+						self.__AppendAttackPowerInfo(absChance)
+					else:
+						self.__AppendAttackPowerInfo(absChance)
+						item.SelectItem(itemAbsorbedVnum)
+						self.__AppendMagicAttackInfo(absChance)
+				elif item.GetItemType() == item.ITEM_TYPE_ARMOR:
+					defGrade = item.GetValue(1)
+					defBonus = item.GetValue(5) * 2
+					defGrade = self.CalcAcceValue(defGrade, absChance)
+					defBonus = self.CalcAcceValue(defBonus, absChance)
+					
+					if defGrade > 0:
+						self.AppendSpace(5)
+						self.AppendTextLine(localeInfo.TOOLTIP_ITEM_DEF_GRADE % (defGrade + defBonus), self.GetChangeTextLineColor(defGrade))
+					
+					item.SelectItem(itemAbsorbedVnum)
+					self.__AppendMagicDefenceInfo(absChance)
+				## END ATTACK / DEFENCE
+				
+				## EFFECT
+				item.SelectItem(itemAbsorbedVnum)
+				for i in xrange(item.ITEM_APPLY_MAX_NUM):
+					(affectType, affectValue) = item.GetAffect(i)
+					affectValue = self.CalcAcceValue(affectValue, absChance)
+					affectString = self.__GetAffectString(affectType, affectValue)
+					if affectString and affectValue > 0:
+						self.AppendTextLine(affectString, self.GetChangeTextLineColor(affectValue))
+					
+					item.SelectItem(itemAbsorbedVnum)
+				# END EFFECT
+				
+			item.SelectItem(itemVnum)
+			## ATTR
+			self.__AppendAttributeInformation(attrSlot, MaxAbs)
+			# END ATTR
+			
+			self.AppendWearableInformation()
+			self.ShowToolTip()
 
+		def SetAcceResultAbsItem(self, slotIndex1, slotIndex2, window_type = player.INVENTORY):
+			itemVnumAcce = player.GetItemIndex(window_type, slotIndex1)
+			itemVnumTarget = player.GetItemIndex(window_type, slotIndex2)
+			if not itemVnumAcce or not itemVnumTarget:
+				return
+			
+			self.ClearToolTip()
+			
+			item.SelectItem(itemVnumAcce)
+			itemType = item.GetItemType()
+			itemSubType = item.GetItemSubType()
+			if itemType != item.ITEM_TYPE_COSTUME and itemSubType != item.COSTUME_TYPE_ACCE:
+				return
+			
+			metinSlot = [player.GetItemMetinSocket(window_type, slotIndex1, i) for i in xrange(player.METIN_SOCKET_MAX_NUM)]
+			attrSlot = [player.GetItemAttribute(window_type, slotIndex2, i) for i in xrange(player.ATTRIBUTE_SLOT_MAX_NUM)]
+			
+			itemDesc = item.GetItemDescription()
+			self.__AdjustMaxWidth(attrSlot, itemDesc)
+			self.__SetItemTitle(itemVnumAcce, metinSlot, attrSlot)
+			self.AppendDescription(itemDesc, 26)
+			self.AppendDescription(item.GetItemSummary(), 26, self.CONDITION_COLOR)
+			item.SelectItem(itemVnumAcce)
+			self.__AppendLimitInformation()
+			
+			## ABSORPTION RATE
+			self.AppendTextLine(localeInfo.ACCE_ABSORB_CHANCE % (metinSlot[acce.ABSORPTION_SOCKET]), self.CONDITION_COLOR)
+			## END ABSOPRTION RATE
+			
+			## ATTACK / DEFENCE
+			itemAbsorbedVnum = itemVnumTarget
+			item.SelectItem(itemAbsorbedVnum)
+			if item.GetItemType() == item.ITEM_TYPE_WEAPON:
+				if item.GetItemSubType() == item.WEAPON_FAN:
+					self.__AppendMagicAttackInfo(metinSlot[acce.ABSORPTION_SOCKET])
+					item.SelectItem(itemAbsorbedVnum)
+					self.__AppendAttackPowerInfo(metinSlot[acce.ABSORPTION_SOCKET])
+				else:
+					self.__AppendAttackPowerInfo(metinSlot[acce.ABSORPTION_SOCKET])
+					item.SelectItem(itemAbsorbedVnum)
+					self.__AppendMagicAttackInfo(metinSlot[acce.ABSORPTION_SOCKET])
+			elif item.GetItemType() == item.ITEM_TYPE_ARMOR:
+				defGrade = item.GetValue(1)
+				defBonus = item.GetValue(5) * 2
+				defGrade = self.CalcAcceValue(defGrade, metinSlot[acce.ABSORPTION_SOCKET])
+				defBonus = self.CalcAcceValue(defBonus, metinSlot[acce.ABSORPTION_SOCKET])
+				
+				if defGrade > 0:
+					self.AppendSpace(5)
+					self.AppendTextLine(localeInfo.TOOLTIP_ITEM_DEF_GRADE % (defGrade + defBonus), self.GetChangeTextLineColor(defGrade))
+				
+				item.SelectItem(itemAbsorbedVnum)
+				self.__AppendMagicDefenceInfo(metinSlot[acce.ABSORPTION_SOCKET])
+			## END ATTACK / DEFENCE
+			
+			## EFFECT
+			item.SelectItem(itemAbsorbedVnum)
+			for i in xrange(item.ITEM_APPLY_MAX_NUM):
+				(affectType, affectValue) = item.GetAffect(i)
+				affectValue = self.CalcAcceValue(affectValue, metinSlot[acce.ABSORPTION_SOCKET])
+				affectString = self.__GetAffectString(affectType, affectValue)
+				if affectString and affectValue > 0:
+					self.AppendTextLine(affectString, self.GetChangeTextLineColor(affectValue))
+				
+				item.SelectItem(itemAbsorbedVnum)
+			## END EFFECT
+			
+			## ATTR
+			item.SelectItem(itemAbsorbedVnum)
+			for i in xrange(player.ATTRIBUTE_SLOT_MAX_NUM):
+				type = attrSlot[i][0]
+				value = attrSlot[i][1]
+				if not value:
+					continue
+				
+				value = self.CalcAcceValue(value, metinSlot[acce.ABSORPTION_SOCKET])
+				affectString = self.__GetAffectString(type, value)
+				if affectString and value > 0:
+					affectColor = self.__GetAttributeColor(i, value)
+					self.AppendTextLine(affectString, affectColor)
+				
+				item.SelectItem(itemAbsorbedVnum)
+			## END ATTR
+			
+			## WEARABLE
+			item.SelectItem(itemVnumAcce)
+			self.AppendSpace(5)
+			self.AppendTextLine(localeInfo.TOOLTIP_ITEM_WEARABLE_JOB, self.NORMAL_COLOR)
+			
+			item.SelectItem(itemVnumAcce)
+			flagList = (
+						not item.IsAntiFlag(item.ITEM_ANTIFLAG_WARRIOR),
+						not item.IsAntiFlag(item.ITEM_ANTIFLAG_ASSASSIN),
+						not item.IsAntiFlag(item.ITEM_ANTIFLAG_SURA),
+						not item.IsAntiFlag(item.ITEM_ANTIFLAG_SHAMAN)
+			)
+			
+			if app.ENABLE_WOLFMAN_CHARACTER:
+				flagList += (not item.IsAntiFlag(item.ITEM_ANTIFLAG_WOLFMAN),)
+			
+			characterNames = ""
+			for i in xrange(self.CHARACTER_COUNT):
+				name = self.CHARACTER_NAMES[i]
+				flag = flagList[i]
+				if flag:
+					characterNames += " "
+					characterNames += name
+			
+			textLine = self.AppendTextLine(characterNames, self.NORMAL_COLOR, True)
+			textLine.SetFeather()
+			
+			item.SelectItem(itemVnumAcce)
+			if item.IsAntiFlag(item.ITEM_ANTIFLAG_MALE):
+				textLine = self.AppendTextLine(localeInfo.FOR_FEMALE, self.NORMAL_COLOR, True)
+				textLine.SetFeather()
+			
+			if item.IsAntiFlag(item.ITEM_ANTIFLAG_FEMALE):
+				textLine = self.AppendTextLine(localeInfo.FOR_MALE, self.NORMAL_COLOR, True)
+				textLine.SetFeather()
+			## END WEARABLE
+			
+			self.ShowToolTip()
+	
+	
+	
 class HyperlinkItemToolTip(ItemToolTip):
 	def __init__(self):
 		ItemToolTip.__init__(self, isPickable=True)
