@@ -68,7 +68,7 @@ def SAA(text):
 def LoadLocaleFile(srcFileName, localeDict):
 	funcDict = {
 		"SA": SA,
-		"SNA": SNA
+		"SNA": SNA,
 		"SAA": SAA,
 		"SAN": SAN
 	}

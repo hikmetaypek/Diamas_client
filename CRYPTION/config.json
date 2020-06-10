@@ -19,6 +19,17 @@
 		}
 	},
 	{
+		"dir": "acce",
+		"file": "../data/acce.dia",
+		"visualdir": "",
+		"key": [
+			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
+			0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4
+		],
+		"type": ["archive_flag_lz4", "archive_flag_aes256"],
+		"version": 5
+	},
+	{
 		"dir": "bgm",
 		"file": "../data/bgm.dia",
 		"visualdir": "bgm/",

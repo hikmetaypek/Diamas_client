@@ -161,6 +161,9 @@ class AtlasWindow(ui.ScriptWindow):
 				self.AtlasMainWindow.Show()
 		ui.ScriptWindow.Show(self)
 
+	def SetMapName(self, name):
+		self.mapName = name
+
 	def SetCenterPositionAdjust(self, x, y):
 		self.SetPosition((wndMgr.GetScreenWidth() - self.GetWidth()) / 2 + x, (wndMgr.GetScreenHeight() - self.GetHeight()) / 2 + y)
 

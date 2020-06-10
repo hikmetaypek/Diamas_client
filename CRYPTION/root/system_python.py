@@ -48,7 +48,9 @@ def GetVfsFile(filename):
 	import pack
 	data = pack.Get(filename)
 	if data == None:
-		raise IOError("No file or directory ({0})".format(filename))
+		errorMsg = "No file or directory ({0}) Type 2".format(filename)
+		# dbg.TraceError(errorMsg)
+		raise IOError(errorMsg)
 
 	return data
 
@@ -57,6 +59,28 @@ def OpenVfsFile(filename):
 
 __builtin__.OpenVfsFile = OpenVfsFile
 
+# builtin_open
+oldOpen = __builtin__.open
+
+def __openTrampoline(*args,**kwargs):
+	foundExts = False
+	whiteListedExts = [".cfg", ".txt", ".eig", ".inf"]
+	for i in whiteListedExts:
+		if i in args[0]:
+			foundExts = True
+			break
+
+	if not foundExts and "." in args[0]:
+		errorMsg = "No such file or directory ({0}) Type 3".format(args[0])
+		dbg.TraceError(errorMsg)
+		raise IOError(errorMsg)
+
+	r = oldOpen(*args,**kwargs)
+	return r
+
+__builtin__.open = __openTrampoline
+
+# EterPack methods
 class EterPackModuleLoader(object):
 	def __init__(self, filename, code, is_package):
 		self.filename = filename
@@ -125,7 +149,23 @@ class EterPackModuleFinder(object):
 
 sys.meta_path.append(EterPackModuleFinder())
 
-def execfile(fileName, dict=None):
+# exec & execfile
+#oldExec = __builtin__.exec
+
+def __execFileTrampoline(fileName, dict=None):
+	ref = sys._getframe(1).f_code.co_filename
+
+	import pack
+	if not ref or not pack.ExistInPack(ref):
+		errorMsg = "No such file or directory ({0}) Type 4 From ({1})".format(fileName, ref)
+		dbg.TraceError(errorMsg)
+		raise IOError(errorMsg)
+
+	if not pack.ExistInPack(fileName):
+		errorMsg = "No such file or directory ({0}) Type 4-2 From ({1})".format(fileName, ref)
+		dbg.TraceError(errorMsg)
+		raise IOError(errorMsg)
+
 	data = GetVfsFile(fileName)
 
 	if fileName.endswith(".pyc") or fileName.endswith(".pyo"):
@@ -138,28 +178,9 @@ def execfile(fileName, dict=None):
 
 	exec code in dict
 
-__builtin__.execfile = execfile
+__builtin__.execfile = __execFileTrampoline
 
 #dbg.LogBox("3")
-
-
-loginMark = "-cs"
-
-"""
-import os
-if not os.path.isfile("locale.cfg"):
-	localeConfig = open("locale.cfg", "w")
-	localeConfig.write("0 0 de")
-	localeConfig.close()
-	app.ForceSetLocale("de", "locale/de")
-
-if not os.path.isfile("mylang.cfg"):
-	localeConfig = open("mylang.cfg", "w")
-	localeConfig.write("de")
-	localeConfig.close()
-"""
-
-#dbg.LogBox("4")
 
 def GetExceptionString(excTitle):
 	# dbg.LogBox("exc")

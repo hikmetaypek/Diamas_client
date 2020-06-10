@@ -1277,15 +1277,15 @@ class InventoryWindow(ui.ScriptWindow):
 			self.questionDialog.slotIndex = slotIndex
 
 			constInfo.SET_ITEM_QUESTION_DIALOG_STATUS(1)
-
-		#elif player.GetItemTypeBySlot(slotIndex) == item.ITEM_TYPE_GACHA or player.GetItemTypeBySlot(slotIndex) == item.ITEM_TYPE_GIFTBOX:
-		elif player.GetItemTypeBySlot(slotIndex) == item.ITEM_TYPE_GIFTBOX:
-			if self.interface:
-				if self.interface.dlgChestDrop:
-					if not self.interface.dlgChestDrop.IsShow():
-						self.interface.dlgChestDrop.Open(slotIndex)
-						net.SendChestDropInfo(slotIndex)
-							
+		#
+		##elif player.GetItemTypeBySlot(slotIndex) == item.ITEM_TYPE_GACHA or player.GetItemTypeBySlot(slotIndex) == item.ITEM_TYPE_GIFTBOX:
+		#elif player.GetItemTypeBySlot(slotIndex) == item.ITEM_TYPE_GIFTBOX:
+		#	if self.interface:
+		#		if self.interface.dlgChestDrop:
+		#			if not self.interface.dlgChestDrop.IsShow():
+		#				self.interface.dlgChestDrop.Open(slotIndex)
+		#				net.SendChestDropInfo(slotIndex)
+		#
 		else:
 			self.__SendUseItemPacket(slotIndex)
 			#net.SendItemUsePacket(slotIndex)

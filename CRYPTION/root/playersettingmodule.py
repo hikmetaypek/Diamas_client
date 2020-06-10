@@ -1423,14 +1423,7 @@ def __LoadGameEnemy():
 	pass
 
 def __LoadGameNPC():
-	try:
-		lines = open("npclist.txt", "r").readlines()
-	except IOError:
-		import dbg
-		dbg.LogBox("LoadLocaleError(%(srcFileName)s)" % locals())
-		app.Abort()
-
-	for line in lines:
+	for line in OpenVfsFile("npclist.txt"):
 		cleaned = line if line[-1] != '\n' else line[:-1]
 		tokens = cleaned.split("\t")
 		if len(tokens) == 0 or not tokens[0]:
