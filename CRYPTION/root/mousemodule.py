@@ -27,7 +27,8 @@ class CursorImage(object):
 		self.LoadImage(imageName)
 
 	def __del__(self):
-		grpImage.Delete(self.handle)
+		if self.handle:
+			grpImage.Delete(self.handle)
 
 	def LoadImage(self, imageName):
 		try:
@@ -83,6 +84,7 @@ class CMouseController(object):
 
 		self.DeattachObject()
 
+		self.cursorDict = {}
 		self.callbackDict = {}
 
 	def __del__(self):

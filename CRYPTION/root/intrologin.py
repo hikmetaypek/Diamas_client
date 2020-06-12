@@ -492,9 +492,6 @@ class LoginWindow(ui.ScriptWindow):
 		self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_SYMBOLS)
 
 	def Connect(self, id, pwd):
-		if constInfo.SEQUENCE_PACKET_ENABLE:
-			net.SetPacketSequenceMode()
-
 		self.stream.popupWindow.Close()
 		self.stream.popupWindow.Open(localeInfo.LOGIN_CONNETING, self.SetPasswordEditLineFocus, localeInfo.UI_CANCEL)
 
