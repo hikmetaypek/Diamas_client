@@ -22,6 +22,9 @@ def RunApp():
 	app.SetArmorSpecularEnable(constInfo.ARMOR_SPECULAR_ENABLE)
 	app.SetWeaponSpecularEnable(constInfo.WEAPON_SPECULAR_ENABLE)
 
+	localeInfo.UI_DEF_FONT = "Tahoma:12"
+	localeInfo.UI_DEF_FONT_LARGE = "Tahoma:16"
+	
 	app.SetMouseHandler(mouseModule.mouseController)
 	wndMgr.SetMouseHandler(mouseModule.mouseController)
 	wndMgr.SetScreenSize(systemSetting.GetWidth(), systemSetting.GetHeight())

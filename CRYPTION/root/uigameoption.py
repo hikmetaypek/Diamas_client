@@ -471,7 +471,7 @@ class OptionDialog(ui.ScriptWindow):
 			self.viewChatButtonList[1].Down()
 
 	def RefreshAlwaysShowName(self):
-		if systemSetting.IsAlwaysShowName():
+		if systemSetting.GetShowNameFlag():
 			self.alwaysShowNameButtonList[0].Down()
 			self.alwaysShowNameButtonList[1].SetUp()
 		else:

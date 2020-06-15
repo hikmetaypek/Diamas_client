@@ -1083,7 +1083,7 @@ class GameWindow(ui.ScriptWindow):
 	# ADD_ALWAYS_SHOW_NAME
 	def __IsShowName(self):
 
-		if systemSetting.IsAlwaysShowName():
+		if systemSetting.GetShowNameFlag():
 			return True
 
 		if self.ShowNameFlag:
@@ -1470,7 +1470,8 @@ class GameWindow(ui.ScriptWindow):
 
 		# ADD_ALWAYS_SHOW_NAME
 		if self.__IsShowName():
-			textTail.ShowAllTextTail()
+			textTail.ShowAllCharactersTextTail()
+			textTail.ShowAllItemsTextTail()
 			self.PickingItemIndex = textTail.Pick(x, y)
 		# END_OF_ADD_ALWAYS_SHOW_NAME
 

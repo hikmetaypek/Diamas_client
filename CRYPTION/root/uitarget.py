@@ -584,10 +584,10 @@ class DropWindow(ui.ScriptWindow):
 	
 	def AddItem(self, slot_number, item_vnum):
 		item.SelectItem(item_vnum)
-		itemSizeX, itemSizeY = item.GetItemSize()
-		if itemSizeY == 3:
+		itemSize = item.GetItemSize()
+		if itemSize == 3:
 			self.items_3.append(item_vnum)
-		elif itemSizeY == 2:
+		elif itemSize == 2:
 			self.items_2.append(item_vnum)
 		else:
 			self.items_1.append(item_vnum)

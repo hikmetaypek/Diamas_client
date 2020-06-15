@@ -243,7 +243,7 @@ class CubeWindow(ui.ScriptWindow):
 		for itemVnum, itemCount in materialInfo[materialIndex]:
 			bAddedNow = False	# 이번에 클릭함으로써 아이템이 추가되었나?
 			item.SelectItem(itemVnum)
-			itemSizeX, itemSizeY = item.GetItemSize()
+			itemSizeY = item.GetItemSize()
 
 			# 제조에 필요한 만큼의 재료를 가지고 있는가?
 			if player.GetItemCountByVnum(itemVnum) >= itemCount:
@@ -277,7 +277,7 @@ class CubeWindow(ui.ScriptWindow):
 								if cubeColumn in self.cubeItemInfo:
 									columnVNUM = player.GetItemIndex(self.cubeItemInfo[cubeColumn])
 									item.SelectItem(columnVNUM)
-									columnItemSizeX, columnItemSizeY = item.GetItemSize()
+									columnItemSizeY = item.GetItemSize()
 
 									if 3 == columnItemSizeY:
 										continue #continue cube slot iterating
@@ -285,7 +285,7 @@ class CubeWindow(ui.ScriptWindow):
 								if 0 < currentSlotLine and slotPos - self.CUBE_SLOT_COUNTX in self.cubeItemInfo:
 									upperColumnVNUM = player.GetItemIndex(self.cubeItemInfo[slotPos - self.CUBE_SLOT_COUNTX])
 									item.SelectItem(upperColumnVNUM)
-									columnItemSizeX, upperColumnItemSizeY = item.GetItemSize()
+									upperColumnItemSizeY = item.GetItemSize()
 
 								# 1칸짜리 아이템은 바로 윗줄에 한칸짜리 아이템이 있어야 함
 								if 1 == itemSizeY:
@@ -416,7 +416,7 @@ class CubeWindow(ui.ScriptWindow):
 
 			# Center Align
 			item.SelectItem(itemVnum)
-			sizeX, sizeY = item.GetItemSize()
+			sizeY = item.GetItemSize()
 			localX, localY = currentSlot.GetLocalPosition()
 
 			currentSlot.SetSize(self.SLOT_SIZEX, self.SLOT_SIZEY * sizeY)
@@ -446,7 +446,7 @@ class CubeWindow(ui.ScriptWindow):
 
 						# Center Align
 						item.SelectItem(itemVnum)
-						sizeX, sizeY = item.GetItemSize()
+						sizeY = item.GetItemSize()
 						localX, localY = currentSlot.GetLocalPosition()
 
 						currentSlot.SetSize(self.SLOT_SIZEX, self.SLOT_SIZEY * sizeY)

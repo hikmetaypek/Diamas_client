@@ -1917,9 +1917,9 @@ class SlotWindow(Window):
 		itemIcon = item.GetIconImage()
 
 		item.SelectItem(ItemIndex)
-		(width, height) = item.GetItemSize()
+		height = item.GetItemSize()
 
-		wndMgr.SetSlot(self.hWnd, renderingSlotNumber, ItemIndex, width, height, itemIcon, diffuseColor)
+		wndMgr.SetSlot(self.hWnd, renderingSlotNumber, ItemIndex, 1, height, itemIcon, diffuseColor)
 		wndMgr.SetSlotCount(self.hWnd, renderingSlotNumber, ItemCount)
 
 	def SetSkillSlot(self, renderingSlotNumber, skillIndex, skillLevel):

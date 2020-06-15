@@ -316,7 +316,7 @@ class RefineDialogNew(ui.ScriptWindow):
 
 		item.SelectItem(nextGradeItemVnum)
 		self.itemImage.LoadImage(item.GetIconImageFileName())
-		xSlotCount, ySlotCount = item.GetItemSize()
+		ySlotCount = item.GetItemSize()
 		for slot in self.slotList:
 			slot.Hide()
 		for i in xrange(min(3, ySlotCount)):

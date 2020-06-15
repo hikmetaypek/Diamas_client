@@ -1292,8 +1292,8 @@ class DragonSoulRefineWindow(ui.ScriptWindow):
 							if 0 != reference_vnum:
 								item.SelectItem(reference_vnum)
 								itemIcon = item.GetIconImage()
-								(width, height) = item.GetItemSize()
-								self.wndRefineSlot.SetSlot(slotPos, 0, width, height, itemIcon, (1.0, 1.0, 1.0, 0.5))
+								height = item.GetItemSize()
+								self.wndRefineSlot.SetSlot(slotPos, 0, 1, height, itemIcon, (1.0, 1.0, 1.0, 0.5))
 								# slot 우측 하단에 숫자 뜨면 안 예쁨...
 								self.wndRefineSlot.SetSlotCount(slotPos, 0)
 						except:

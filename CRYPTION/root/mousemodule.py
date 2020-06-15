@@ -201,7 +201,7 @@ class CMouseController(object):
 					self.DeattachObject()
 					return
 
-				(width, height) = item.GetItemSize()
+				height = item.GetItemSize()
 
 			elif Type == player.SLOT_TYPE_SKILL:
 				skillGrade = player.GetSkillGrade(SlotNumber)
@@ -219,7 +219,7 @@ class CMouseController(object):
 					itemIndex = player.GetItemIndex(position)
 					item.SelectItem(itemIndex)
 					self.AttachedIconHandle = item.GetIconInstance()
-					(width, height) = item.GetItemSize()
+					height = item.GetItemSize()
 
 				elif quickSlotType == player.SLOT_TYPE_SKILL:
 					skillIndex = player.GetSkillIndex(position)

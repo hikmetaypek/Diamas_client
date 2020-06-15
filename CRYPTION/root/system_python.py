@@ -16,7 +16,6 @@ class TraceFile:
 class TraceErrorFile:
 	def write(self, msg):
 		dbg.TraceError(msg)
-		dbg.RegisterExceptionString(msg)
 
 class LogBoxFile:
 	def __init__(self):
