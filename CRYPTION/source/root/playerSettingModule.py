@@ -10,11 +10,12 @@ import localeInfo
 import emotion
 import app
 
-# #if LANGUAGE == "cython"
-from system cimport OpenVfsFile
-# #else
-from system import OpenVfsFile
-# #endif
+"""
+if __USE_CYTHON__:
+	from system cimport OpenVfsFile
+else:
+	from system_python import OpenVfsFile
+"""
 
 JOB_WARRIOR		= 0
 JOB_ASSASSIN	= 1

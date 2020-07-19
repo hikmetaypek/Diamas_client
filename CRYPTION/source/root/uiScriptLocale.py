@@ -1,10 +1,11 @@
 import app
 
-# #if LANGUAGE == "cython"
-from system cimport OpenVfsFile
-# #else
-from system import OpenVfsFile
-# #endif
+"""
+if __USE_CYTHON__:
+	from system cimport OpenVfsFile
+else:
+	from system_python import OpenVfsFile
+"""
 
 OPTION_SHADOW = "SHADOW"
 

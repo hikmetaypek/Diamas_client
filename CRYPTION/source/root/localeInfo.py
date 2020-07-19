@@ -1,12 +1,13 @@
 import app
 import constInfo
 
-# #if LANGUAGE == "cython"
-from system cimport OpenVfsFile
-# #else
-from system import OpenVfsFile
-# #endif
-
+"""
+if __USE_CYTHON__:
+	from system cimport OpenVfsFile
+else:
+	from system_python import OpenVfsFile
+"""
+	
 MAP_TRENT02 = "MAP_TRENT02" # ÀÓ½Ã
 MAP_WL = "MAP_WL" # ÀÓ½Ã
 MAP_NUSLUCK = "MAP_NUSLUCK" # ÀÓ½Ã

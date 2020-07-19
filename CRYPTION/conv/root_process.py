@@ -48,6 +48,7 @@ def __CythonizeSources(nthreads=0):
 
 def Main(language):
 	sources = glob.glob("source\\root\\*.py")
+	sources.remove("system_python.py")
 
 	defines = {
 		"LANGUAGE": language,

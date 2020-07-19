@@ -43,8 +43,6 @@ def AbortApp():
 	import app
 	app.Abort()
 
-
-# #if LANGUAGE == "cython"
 from libcpp.string cimport string
 
 import rootlib
@@ -74,24 +72,6 @@ class CythonModuleFinder(object):
 		return CythonModuleLoader()
 
 sys.meta_path.append(CythonModuleFinder())
-# #else
-
-def GetVfsFile(filename):
-	import pack
-	data = pack.Get(filename)
-	if data == None:
-		errorMsg = "No file or directory ({0}) Type 2".format(filename)
-		# dbg.TraceError(errorMsg)
-		raise IOError(errorMsg)
-
-	return data
-
-def OpenVfsFile(filename):
-	return cStringIO.StringIO(GetVfsFile(filename))
-
-__builtin__.OpenVfsFile = OpenVfsFile
-
-# #endif
 
 # dbg.LogBox("3")
 
@@ -193,20 +173,6 @@ sys.meta_path.append(EterPackModuleFinder())
 #oldExec = __builtin__.exec
 
 def __execFileTrampoline(fileName, dict=None):
-	if not __USE_CYTHON__:
-		ref = sys._getframe(1).f_code.co_filename
-
-		import pack
-		if not ref or not pack.ExistInPack(ref):
-			errorMsg = "No such file or directory ({0}) Type 4 From ({1})".format(fileName, ref)
-			dbg.TraceError(errorMsg)
-			raise IOError(errorMsg)
-
-		if not pack.ExistInPack(fileName):
-			errorMsg = "No such file or directory ({0}) Type 4-2 From ({1})".format(fileName, ref)
-			dbg.TraceError(errorMsg)
-			raise IOError(errorMsg)
-
 	data = GetVfsFile(fileName)
 
 	if fileName.endswith(".pyc") or fileName.endswith(".pyo"):
@@ -223,77 +189,4 @@ __builtin__.execfile = __execFileTrampoline
 
 # dbg.LogBox("7")
 
-def GetExceptionString(excTitle):
-	# dbg.LogBox("exc")
-
-	(excType, excMsg, excTraceBack)=sys.exc_info()
-
-	# dbg.LogBox("%s-%s-%s" % (str(excType),str(excMsg),str(excTraceBack)))
-
-	excText=""
-
-	import traceback
-	traceLineList=traceback.extract_tb(excTraceBack)
-
-	for traceLine in traceLineList:
-		if traceLine[3]:
-			excText+="%s(line:%d) %s - %s" % (traceLine[0], traceLine[1], traceLine[2], traceLine[3])
-		else:
-			excText+="%s(line:%d) %s"  % (traceLine[0], traceLine[1], traceLine[2])
-
-		excText+="\n"
-	
-	excText+="%s - %s:%s" % (excTitle, excType, excMsg)
-
-	return excText
-
-def ShowException(excTitle):
-	excText=GetExceptionString(excTitle)
-	dbg.TraceError(excText)
-	AbortApp()
-
-	return 0
-
-# dbg.LogBox("8")
-
-def RunMainScript(name):
-
-	# dbg.LogBox("runmain")
-
-	try:
-		# dbg.LogBox("rm1")
-
-		import __main__
-		# dbg.LogBox("rm2")
-
-		execfile(name, __main__.__dict__)
-		# dbg.LogBox("rm3")
-
-	except RuntimeError, msg:
-		# dbg.LogBox(str(msg), "rm-runtime")
-
-		msg = str(msg)
-
-		import localeInfo
-		if localeInfo.error:
-			msg = localeInfo.error.get(msg, msg)
-
-		dbg.LogBox(msg)
-		dbg.TraceError(msg)
-		AbortApp()
-
-	except:
-		# dbg.LogBox("rm-exception")
-
-		msg = GetExceptionString("Run")
-		dbg.LogBox(msg)
-		dbg.TraceError(msg)
-		AbortApp()
-
-# dbg.LogBox("9")
-
-# #if LANGUAGE == "cython"
 import Prototype
-# #else
-RunMainScript("Prototype.py")
-# #endif
