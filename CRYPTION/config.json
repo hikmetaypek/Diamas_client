@@ -9,7 +9,7 @@
 		],
 		"type": ["archive_flag_lz4", "archive_flag_aes256"],
 		"version": 5,
-		"cython_enabled": true,
+		"cython_enabled": false,
 		"ignores": [
 			"*.csv",
 			"*error_lookup.pyc",
