@@ -41,7 +41,7 @@ import uiChestDrop
 import event
 import localeInfo
 if app.ENABLE_ACCE_SYSTEM:
-	import uiacce
+	import uiAcce
 
 IsQBHide = 0
 class Interface(object):
@@ -254,11 +254,11 @@ class Interface(object):
 	
 	if app.ENABLE_ACCE_SYSTEM:
 		def __MakeAcceWindow(self):
-			self.wndAcceCombine = uiacce.CombineWindow()
+			self.wndAcceCombine = uiAcce.CombineWindow()
 			self.wndAcceCombine.LoadWindow()
 			self.wndAcceCombine.Hide()
 			
-			self.wndAcceAbsorption = uiacce.AbsorbWindow()
+			self.wndAcceAbsorption = uiAcce.AbsorbWindow()
 			self.wndAcceAbsorption.LoadWindow()
 			self.wndAcceAbsorption.Hide()
 			

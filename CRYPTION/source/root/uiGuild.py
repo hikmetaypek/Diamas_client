@@ -2476,9 +2476,9 @@ class BuildGuildBuildingWindow(ui.ScriptWindow):
 	PythonPlayer::Update()
 		CPythonPlayer::__Update_NotifyGuildAreaEvent()
 			game.py.BINARY_Guild_EnterGuildArea
-				uigameButton.GameButtonWindow.ShowBuildButton()
+				uiGameButton.GameButtonWindow.ShowBuildButton()
 			game.py.BINARY_Guild_ExitGuildArea
-				uigameButton.GameButtonWindow.HideBuildButton()
+				uiGameButton.GameButtonWindow.HideBuildButton()
 
 BuildButton:
 !±æµåÀåÀÞÞö Ã³¸® ¾øÀ½

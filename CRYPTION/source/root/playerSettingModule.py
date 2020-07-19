@@ -1428,7 +1428,7 @@ def __LoadGameEnemy():
 	pass
 
 def __LoadGameNPC():
-	for line in OpenVfsFile("npclist.txt"):
+	for line in OpenVfsFile("npcList.txt"):
 		cleaned = line if line[-1] != '\n' else line[:-1]
 		tokens = cleaned.split("\t")
 		if len(tokens) == 0 or not tokens[0]:
@@ -1457,7 +1457,7 @@ def LoadGuildBuildingList(filename):
 	import uiGuild
 	uiGuild.BUILDING_DATA_LIST = []
 
-	for line in OpenVfsFile("npclist.txt"):
+	for line in OpenVfsFile("npcList.txt"):
 		tokens = line.split("\t")
 
 		TOKEN_VNUM = 0
