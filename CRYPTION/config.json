@@ -1,6 +1,6 @@
 [
 	{
-		"dir": "root",
+		"dir": "source/root",
 		"file": "../data/root.dia",
 		"visualdir": "",
 		"key": [
@@ -9,6 +9,7 @@
 		],
 		"type": ["archive_flag_lz4", "archive_flag_aes256"],
 		"version": 5,
+		"cython_enabled": true,
 		"ignores": [
 			"*.csv",
 			"*error_lookup.pyc",
@@ -19,7 +20,7 @@
 		}
 	},
 	{
-		"dir": "acce",
+		"dir": "source/acce",
 		"file": "../data/acce.dia",
 		"visualdir": "",
 		"key": [
@@ -30,7 +31,7 @@
 		"version": 5
 	},
 	{
-		"dir": "bgm",
+		"dir": "source/bgm",
 		"file": "../data/bgm.dia",
 		"visualdir": "bgm/",
 		"key": [
@@ -41,7 +42,7 @@
 		"version": 5
 	},
 	{
-		"dir": "effect",
+		"dir": "source/effect",
 		"file": "../data/effect.dia",
 		"visualdir": "d:/ymir work/effect/",
 		"key": [
@@ -52,7 +53,7 @@
 		"version": 5
 	},
 	{
-		"dir": "etc",
+		"dir": "source/etc",
 		"file": "../data/etc.dia",
 		"visualdir": "d:/ymir work/",
 		"key": [
@@ -63,7 +64,7 @@
 		"version": 5
 	},
 	{
-		"dir": "guild",
+		"dir": "source/guild",
 		"file": "../data/guild.dia",
 		"visualdir": "d:/ymir work/guild/",
 		"key": [
@@ -74,7 +75,7 @@
 		"version": 5
 	},
 	{
-		"dir": "icon",
+		"dir": "source/icon",
 		"file": "../data/icon.dia",
 		"visualdir": "icon/",
 		"key": [
@@ -85,7 +86,7 @@
 		"version": 5
 	},
 	{
-		"dir": "item",
+		"dir": "source/item",
 		"file": "../data/item.dia",
 		"visualdir": "d:/ymir work/item/",
 		"key": [
@@ -96,7 +97,7 @@
 		"version": 5
 	},
 	{
-		"dir": "locale",
+		"dir": "source/locale",
 		"file": "../data/locale.dia",
 		"visualdir": "locale/",
 		"key": [
@@ -107,7 +108,7 @@
 		"version": 5
 	},
 	{
-		"dir": "maps",
+		"dir": "source/maps",
 		"file": "../data/maps.dia",
 		"visualdir": "",
 		"key": [
@@ -118,7 +119,7 @@
 		"version": 5
 	},
 	{
-		"dir": "monster",
+		"dir": "source/monster",
 		"file": "../data/monster.dia",
 		"visualdir": "d:/ymir work/monster/",
 		"key": [
@@ -129,7 +130,7 @@
 		"version": 5
 	},
 	{
-		"dir": "monster2",
+		"dir": "source/monster2",
 		"file": "../data/monster2.dia",
 		"visualdir": "d:/ymir work/monster2/",
 		"key": [
@@ -140,7 +141,7 @@
 		"version": 5
 	},
 	{
-		"dir": "npc",
+		"dir": "source/npc",
 		"file": "../data/npc.dia",
 		"visualdir": "d:/ymir work/npc/",
 		"key": [
@@ -151,7 +152,7 @@
 		"version": 5
 	},
 	{
-		"dir": "npc2",
+		"dir": "source/npc2",
 		"file": "../data/npc2.dia",
 		"visualdir": "d:/ymir work/npc2/",
 		"key": [
@@ -162,7 +163,7 @@
 		"version": 5
 	},
 	{
-		"dir": "npc_mount",
+		"dir": "source/npc_mount",
 		"file": "../data/npc_mount.dia",
 		"visualdir": "d:/ymir work/npc_mount/",
 		"key": [
@@ -173,7 +174,7 @@
 		"version": 5
 	},
 	{
-		"dir": "npc_pet",
+		"dir": "source/npc_pet",
 		"file": "../data/npc_pet.dia",
 		"visualdir": "d:/ymir work/npc_pet/",
 		"key": [
@@ -184,7 +185,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc/common",
+		"dir": "source/pc/common",
 		"file": "../data/pc_common.dia",
 		"visualdir": "d:/ymir work/pc/common/",
 		"key": [
@@ -195,7 +196,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc/assassin",
+		"dir": "source/pc/assassin",
 		"file": "../data/pc_assassin.dia",
 		"visualdir": "d:/ymir work/pc/assassin/",
 		"key": [
@@ -206,7 +207,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc/sura",
+		"dir": "source/pc/sura",
 		"file": "../data/pc_sura.dia",
 		"visualdir": "d:/ymir work/pc/sura/",
 		"key": [
@@ -217,7 +218,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc/shaman",
+		"dir": "source/pc/shaman",
 		"file": "../data/pc_shaman.dia",
 		"visualdir": "d:/ymir work/pc/shaman/",
 		"key": [
@@ -228,7 +229,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc/warrior",
+		"dir": "source/pc/warrior",
 		"file": "../data/pc_warrior.dia",
 		"visualdir": "d:/ymir work/pc/warrior/",
 		"key": [
@@ -239,7 +240,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2/assassin",
+		"dir": "source/pc2/assassin",
 		"file": "../data/pc2_assassin.dia",
 		"visualdir": "d:/ymir work/pc2/assassin/",
 		"key": [
@@ -250,7 +251,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2/common",
+		"dir": "source/pc2/common",
 		"file": "../data/pc2_common.dia",
 		"visualdir": "d:/ymir work/pc2/common/",
 		"key": [
@@ -261,7 +262,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2/sura",
+		"dir": "source/pc2/sura",
 		"file": "../data/pc2_sura.dia",
 		"visualdir": "d:/ymir work/pc2/sura/",
 		"key": [
@@ -272,7 +273,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2/shaman",
+		"dir": "source/pc2/shaman",
 		"file": "../data/pc2_shaman.dia",
 		"visualdir": "d:/ymir work/pc2/shaman/",
 		"key": [
@@ -283,7 +284,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc2/warrior",
+		"dir": "source/pc2/warrior",
 		"file": "../data/pc2_warrior.dia",
 		"visualdir": "d:/ymir work/pc2/warrior/",
 		"key": [
@@ -294,7 +295,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc3/common",
+		"dir": "source/pc3/common",
 		"file": "../data/pc3_common.dia",
 		"visualdir": "d:/ymir work/pc3/common/",
 		"key": [
@@ -305,7 +306,7 @@
 		"version": 5
 	},
 	{
-		"dir": "pc3/wolfman",
+		"dir": "source/pc3/wolfman",
 		"file": "../data/pc3_wolfman.dia",
 		"visualdir": "d:/ymir work/pc3/wolfman/",
 		"key": [
@@ -316,7 +317,7 @@
 		"version": 5
 	},
 	{
-		"dir": "property",
+		"dir": "source/property",
 		"file": "../data/property.dia",
 		"visualdir": "property/",
 		"key": [
@@ -327,7 +328,7 @@
 		"version": 5
 	},
 	{
-		"dir": "uiloading",
+		"dir": "source/uiloading",
 		"file": "../data/uiloading.dia",
 		"visualdir": "d:/ymir work/uiloading/",
 		"key": [
@@ -338,9 +339,9 @@
 		"version": 5
 	},
 	{
-		"dir": "season_1",
+		"dir": "source/season_1",
 		"file": "../data/season_1.dia",
-		"visualdir": "season1/",
+		"visualdir": "",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 			0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4
@@ -349,9 +350,9 @@
 		"version": 5
 	},
 	{
-		"dir": "season_2",
+		"dir": "source/season_2",
 		"file": "../data/season_2.dia",
-		"visualdir": "season2/",
+		"visualdir": "",
 		"key": [
 			0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,
 			0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4
@@ -360,7 +361,7 @@
 		"version": 5
 	},
 	{
-		"dir": "sound",
+		"dir": "source/sound",
 		"file": "../data/sound.dia",
 		"visualdir": "sound/",
 		"key": [
@@ -371,7 +372,7 @@
 		"version": 5
 	},
 	{
-		"dir": "terrain",
+		"dir": "source/terrain",
 		"file": "../data/terrain.dia",
 		"visualdir": "d:/ymir work/terrainmaps/",
 		"key": [
@@ -382,7 +383,7 @@
 		"version": 5
 	},
 	{
-		"dir": "textureset",
+		"dir": "source/textureset",
 		"file": "../data/textureset.dia",
 		"visualdir": "textureset/",
 		"key": [
@@ -393,7 +394,7 @@
 		"version": 5
 	},
 	{
-		"dir": "tree",
+		"dir": "source/tree",
 		"file": "../data/tree.dia",
 		"visualdir": "d:/ymir work/tree/",
 		"key": [
@@ -404,7 +405,7 @@
 		"version": 5
 	},
 	{
-		"dir": "zone",
+		"dir": "source/zone",
 		"file": "../data/zone.dia",
 		"visualdir": "d:/ymir work/zone/",
 		"key": [

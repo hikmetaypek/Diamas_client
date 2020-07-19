@@ -1,0 +1,81 @@
+ScriptType            RaceDataScript
+
+BaseModelFileName     "D:\Ymir Work\monster2\zombie_soldier_spear\zombie_soldier_spear.GR2"
+
+DefaultHitSoundFileName     ""
+List DefaultHitEffectFileName
+{
+}
+
+Group ShapeData
+{
+	PathName	"d:/ymir work/monster2/zombie_soldier_spear/"
+
+	ShapeDataCount			3
+
+	Group ShapeData00
+	{
+		ShapeIndex			0
+
+		Model				"zombie_soldier_spear.gr2"
+		SourceSkin			"zombie_soldier.dds"
+		TargetSkin			"zombie_soldier.dds"
+	}
+	Group ShapeData00
+	{
+		ShapeIndex			1
+
+		Model				"zombie_soldier_spear.gr2"
+		SourceSkin			"zombie_bigboss1_weapon.dds"
+		TargetSkin			"zombie_bigboss1_weapon.dds"
+	}
+	Group ShapeData00
+	{
+		ShapeIndex			2
+
+		Model				"zombie_soldier_spear.gr2"
+		SourceSkin			"zombie_weapon.dds"
+		TargetSkin			"zombie_weapon.dds"
+	}
+}
+
+Group AttachingData
+{
+    AttachingDataCount       2
+    
+    Group AttachingData00
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        1
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           58.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+    
+    Group AttachingData01
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01"
+        
+        CollisionType        3
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           86.000000
+            Position         0.000000 0.000000 0.000000
+        }
+    }
+}

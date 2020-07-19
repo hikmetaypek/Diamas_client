@@ -1,0 +1,104 @@
+ScriptType            RaceDataScript
+
+BaseModelFileName     "D:\Ymir Work\monster2\naga_archer\naga_archer.GR2"
+
+Group ShapeData
+{
+	PathName	"d:/ymir work/monster2/naga_archer/"
+
+	ShapeDataCount			2
+
+	Group ShapeData00
+	{
+		ShapeIndex			0
+
+		Model				"naga_archer.gr2"
+		SourceSkin			"naga_archer.dds"
+		TargetSkin			"naga_archer.dds"
+	}
+	Group ShapeData01
+	{
+		ShapeIndex			0
+
+		Model				"naga_archer.gr2"
+		SourceSkin			"naga_archer_weapon.dds"
+		TargetSkin			"naga_archer_weapon.dds"
+	}
+}
+
+Group AttachingData
+{
+    AttachingDataCount       4
+    
+    Group AttachingData00
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01 Tail2"
+        
+        CollisionType        1
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           45.000000
+            Position         0.000000 10.000000 0.000000
+        }
+    }
+    
+    Group AttachingData01
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01 Tail2"
+        
+        CollisionType        3
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           60.000000
+            Position         0.000000 10.000000 0.000000
+        }
+    }
+    
+    Group AttachingData02
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01 Spine"
+        
+        CollisionType        1
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           120.000000
+            Position         0.000000 12.000000 50.000000
+        }
+    }
+    
+    Group AttachingData03
+    {
+        AttachingDataType    1
+        
+        isAttaching          1
+        AttachingModelIndex  0
+        AttachingBoneName    "Bip01 Spine"
+        
+        CollisionType        3
+        
+        SphereDataCount      1
+        Group SphereData00
+        {
+            Radius           140.000000
+            Position         0.000000 12.000000 50.000000
+        }
+    }
+}

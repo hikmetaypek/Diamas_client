@@ -1,0 +1,874 @@
+TextureSet
+
+TextureCount 87
+
+Start Texture001
+    "d:\ymir work\terrainmaps\n\desert\sand\sand01.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture001
+Start Texture002
+    "d:\ymir work\terrainmaps\b\field\field 02.dds"
+    6.000000
+    6.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture002
+Start Texture003
+    "d:\ymir work\terrainmaps\b\field\field 03.dds"
+    6.000000
+    6.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture003
+Start Texture004
+    "d:\ymir work\terrainmaps\wom\wom_grass_worn.dds"
+    6.000000
+    6.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture004
+Start Texture005
+    "d:\ymir work\terrainmaps\studio\grass\groundplants01.dds"
+    5.000000
+    5.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture005
+Start Texture006
+    "d:\ymir work\terrainmaps\wom\wom_grass_01.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture006
+Start Texture007
+    "d:\ymir work\terrainmaps\studio\grass\green02.dds"
+    5.000000
+    5.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture007
+Start Texture008
+    "d:\ymir work\terrainmaps\b\stone\stone01.dds"
+    5.000000
+    5.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture008
+Start Texture009
+    "d:\ymir work\terrainmaps\b\stone\stone02.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture009
+Start Texture010
+    "d:\ymir work\terrainmaps\b\stone\stone03.dds"
+    10.000000
+    10.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture010
+Start Texture011
+    "d:\ymir work\terrainmaps\b\stone\stone04.dds"
+    5.000000
+    5.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture011
+Start Texture012
+    "d:\ymir work\terrainmaps\b\tile\tile01.dds"
+    10.000000
+    10.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture012
+Start Texture013
+    "d:\ymir work\terrainmaps\wom\wom_grass_flowers.dds"
+    5.000000
+    5.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture013
+Start Texture014
+    "d:\ymir work\terrainmaps\b\beach\beach sand 01.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture014
+Start Texture015
+    "d:\ymir work\terrainmaps\b\beach\beach sand 02.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture015
+Start Texture016
+    "d:\ymir work\terrainmaps\b\beach\beach sand 03.dds"
+    2.000000
+    2.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture016
+Start Texture017
+    "d:\ymir work\terrainmaps\b\tile\tile03.dds"
+    7.000000
+    7.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture017
+Start Texture018
+    "d:\ymir work\terrainmaps\wom\wom_groundplants.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture018
+Start Texture019
+    "d:\ymir work\terrainmaps\wom\stein1.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture019
+Start Texture020
+    "d:\ymir work\terrainmaps\wom\stein2.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture020
+Start Texture021
+    "d:\ymir work\terrainmaps\wom\stein3.dds"
+    10.000000
+    10.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture021
+Start Texture022
+    "d:\ymir work\terrainmaps\wom\stein4.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture022
+Start Texture023
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_stone_lava_00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture023
+Start Texture024
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_rock_00.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture024
+Start Texture025
+    "d:\ymir work\terrainmaps\wom\lava2.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture025
+Start Texture026
+    "d:\ymir work\terrainmaps\wom\lava3.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture026
+Start Texture027
+    "d:\ymir work\terrainmaps\wom\lava4.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture027
+Start Texture028
+    "d:\ymir work\terrainmaps\wom\lavastein2.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture028
+Start Texture029
+    "d:\ymir work\terrainmaps\1.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture029
+Start Texture030
+    "d:\ymir work\terrainmaps\2.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture030
+Start Texture031
+    "d:\ymir work\terrainmaps\3.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture031
+Start Texture032
+    "d:\ymir work\terrainmaps\4.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture032
+Start Texture033
+    "d:\ymir work\terrainmaps\5.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture033
+Start Texture034
+    "d:\ymir work\terrainmaps\6.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture034
+Start Texture035
+    "d:\ymir work\terrainmaps\7.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture035
+Start Texture036
+    "d:\ymir work\terrainmaps\8.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture036
+Start Texture037
+    "d:\ymir work\terrainmaps\9.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture037
+Start Texture038
+    "d:\ymir work\terrainmaps\10.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture038
+Start Texture039
+    "d:\ymir work\terrainmaps\11.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture039
+Start Texture040
+    "d:\ymir work\terrainmaps\12.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture040
+Start Texture041
+    "d:\ymir work\terrainmaps\13.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture041
+Start Texture042
+    "d:\ymir work\terrainmaps\14.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture042
+Start Texture043
+    "d:\ymir work\terrainmaps\15.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture043
+Start Texture044
+    "d:\ymir work\terrainmaps\16.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture044
+Start Texture045
+    "d:\ymir work\terrainmaps\17.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture045
+Start Texture046
+    "d:\ymir work\terrainmaps\18.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture046
+Start Texture047
+    "d:\ymir work\terrainmaps\19.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture047
+Start Texture048
+    "d:\ymir work\terrainmaps\20.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture048
+Start Texture049
+    "d:\ymir work\terrainmaps\21.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture049
+Start Texture050
+    "d:\ymir work\terrainmaps\22.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture050
+Start Texture051
+    "d:\ymir work\terrainmaps\23.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture051
+Start Texture052
+    "d:\ymir work\terrainmaps\24.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture052
+Start Texture053
+    "d:\ymir work\terrainmaps\25.dds"
+    10.000000
+    10.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture053
+Start Texture054
+    "d:\ymir work\terrainmaps\26.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture054
+Start Texture055
+    "d:\ymir work\terrainmaps\27.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture055
+Start Texture056
+    "d:\ymir work\terrainmaps\28.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture056
+Start Texture057
+    "d:\ymir work\terrainmaps\29.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture057
+Start Texture058
+    "d:\ymir work\terrainmaps\30.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture058
+Start Texture059
+    "d:\ymir work\terrainmaps\31.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture059
+Start Texture060
+    "d:\ymir work\terrainmaps\32.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture060
+Start Texture061
+    "d:\ymir work\terrainmaps\33.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture061
+Start Texture062
+    "d:\ymir work\terrainmaps\34.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture062
+Start Texture063
+    "d:\ymir work\terrainmaps\35.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture063
+Start Texture064
+    "d:\ymir work\terrainmaps\36.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture064
+Start Texture065
+    "d:\ymir work\terrainmaps\37.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture065
+Start Texture066
+    "d:\ymir work\terrainmaps\38.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture066
+Start Texture067
+    "d:\ymir work\terrainmaps\39.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture067
+Start Texture068
+    "d:\ymir work\terrainmaps\40.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture068
+Start Texture069
+    "d:\ymir work\terrainmaps\41.dds"
+    6.000000
+    6.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture069
+Start Texture070
+    "d:\ymir work\terrainmaps\42.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture070
+Start Texture071
+    "d:\ymir work\terrainmaps\43.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture071
+Start Texture072
+    "d:\ymir work\terrainmaps\44.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture072
+Start Texture073
+    "d:\ymir work\terrainmaps\45.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture073
+Start Texture074
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_field_00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture074
+Start Texture075
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_rock_00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture075
+Start Texture076
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_field_01.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture076
+Start Texture077
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_rock_01.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture077
+Start Texture078
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_field_02.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture078
+Start Texture079
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_grass_00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture079
+Start Texture080
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_stone_lava_00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture080
+Start Texture081
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_lava_red_00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture081
+Start Texture082
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_lava_red_01.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture082
+Start Texture083
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_spider_00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture083
+Start Texture084
+    "d:\ymir work\terrainmaps\dungeon\devilcave\dc_tile_00.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture084
+Start Texture085
+    "d:\ymir work\terrainmaps\dungeon\field 01.dds"
+    4.000000
+    4.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture085
+Start Texture086
+    "d:\ymir work\zone\dungeon\snow_dungeon\tile_ice00.dds"
+    2.000000
+    2.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture086
+Start Texture087
+    "d:\ymir work\zone\dungeon\snow_dungeon\tile_rock00.dds"
+    3.000000
+    3.000000
+    0.000000
+    0.000000
+    0
+    0
+    0
+End Texture087

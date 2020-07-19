@@ -1,2 +1,0 @@
-GENERAL WAIT idle_01.msa 70
-GENERAL WAIT1 idle_02.msa 30

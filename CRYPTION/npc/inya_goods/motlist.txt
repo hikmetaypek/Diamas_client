@@ -1,2 +1,0 @@
-GENERAL WAIT wait1.msa 90
-GENERAL WAIT wait2.msa 10
